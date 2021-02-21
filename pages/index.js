@@ -1,65 +1,58 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { motion } from "framer-motion"
+import Link from 'next/link'
+import { Text, Box, Heading } from "@chakra-ui/react"
+import Layout from '../components/layout'
+import Image from 'next/image'
+function Logo() {
+  return <Image src="/logo.png" alt="logo" width="100" height="100" />
+}
 
-export default function Home() {
+export default function Index() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Layout>
+        <section>
+          <Link href="/home" >
+            <Box
+              as="button"
+              height="50px"
+              lineHeight="1.2"
+              transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+              border="1px"
+              px="8px"
+              borderRadius="2px"
+              fontSize="30px"
+              fontWeight="semibold"
+              bg="#f5f6f7"
+              borderColor="#ccd0d5"
+              color="#4b4f56"
+              _hover={{ bg: "#ebedf0" }}
+              _active={{
+                bg: "#dddfe2",
+                transform: "scale(0.98)",
+                borderColor: "#bec3c9",
+              }}
+              _focus={{
+                boxShadow:
+                  "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
+              }}
+            >
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+              <h1>Click Here</h1>
+            </Box>
+          </Link>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+          <motion.figure
+            layoutId="logo">
+            <Box boxSize="sm">
+              <Logo/>
+              <Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
+                I'm overriding this heading
+              </Heading>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+            </Box>
+          </motion.figure>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+        </section>
+      </Layout>
+  );
 }

@@ -32,3 +32,61 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+NOTES ON NODEFIEND.GITHUB.IO:
+
+https://99designs.com/blog/creative-inspiration/color-combinations/
+
+Darkmode: #18
+#d902ee, #ffd79d, #f162ff, #320d3e
+
+LightMode: #30
+#829079, #ede6b9, #b9925e,
+
+ANIMATION BETWEEN PAGES:
+
+https://blog.sethcorker.com/shared-layout-page-transitions-nextjs-framer-motion
+
+
+
+## Adding a font:
+
+1. Add it to public/fonts/{font name}/{file name}.ttf
+2. goto styles/globals.scss and add it there:
+
+```
+@font-face {
+  font-family: "PoiretOne-Regular";
+  src: url("/fonts/PoiretOne/PoiretOne-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+```
+
+3. preload it inside of : <Head> inside of document.js:
+
+```
+<Head>
+  <link
+   rel="preload"
+   href="/fonts/PoiretOne/PoiretOne-Regular.ttf"
+   as="font"
+   crossOrigin=""
+ />
+</Head>
+```
+
+4. than use it :
+
+```
+<Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
+  I'm overriding this heading
+</Heading>
+```
+
+
+
+
+
