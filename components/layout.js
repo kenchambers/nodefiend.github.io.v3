@@ -8,12 +8,10 @@ import Logo from './logo'
 import HamburgerButton from './hamburger-button'
 import ToggleDarkModeButton from './dark-mode-button'
 import NavigationMenu from './navigation-menu'
-import {Context} from '../contexts'
-
+import { Context } from '../contexts'
 
 export default function Layout({ children, home }) {
   const { state, dispatch } = useContext(Context);
-
   const [ toggleButtonState , setToggleButtonState ] = useState(false)
 
   const open = () => dispatch({type: "TOGGLE_NAV", payload: true})

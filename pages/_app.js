@@ -2,16 +2,13 @@ import '../styles/globals.scss'
 import { extendTheme } from "@chakra-ui/react"
 import { ChakraProvider } from "@chakra-ui/react"
 import { mode } from '@chakra-ui/theme-tools';
-
 import { AnimateSharedLayout, motion } from "framer-motion"
-import { useRouter } from 'next/router';
-import {useEffect, useState, createContext} from 'react';
 import { Skeleton, SkeletonCircle, SkeletonText, Box, Image } from "@chakra-ui/react"
 import { Provider } from '../contexts'
 import LoadingPage from '../components/loading'
 import { chakraConfig, colors, font } from '../constants'
+import useRouterLoading from '../hooks/use-router-loading'
 
-//
 // darkmode:
 // #202040
 // #543864
@@ -23,9 +20,6 @@ import { chakraConfig, colors, font } from '../constants'
 // #f5f1da
 // #96bb7c
 // #eebb4d
-
-
-
 
 const styles = {
   global: props => ({
@@ -39,58 +33,22 @@ const styles = {
   }),
 };
 
-const components = {
-  // Box: {
-  //   // setup light/dark mode component defaults
-  //   baseStyle: props => ({
-  //     dialog: {
-  //       bg: mode('#e3dfc8', '#543864')(props),
-  //     },
-  //   }),
-  // },
-};
-
-
-export const theme = extendTheme({ font, chakraConfig, styles, components})
-
-const useRouterLoading = () => {
-  const Router = useRouter()
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    const start = () => setLoading(true)
-    const end = () => setLoading(false)
-    Router.events.on('routeChangeStart', start)
-    Router.events.on('routeChangeComplete', end)
-    Router.events.on('routeChangeError', end)
-    return () => {
-      Router.events.off('routeChangeStart', start)
-      Router.events.off('routeChangeComplete', end)
-      Router.events.off('routeChangeError', end)
-    }
-  }, [])
-  return loading
-}
+export const theme = extendTheme({ font, chakraConfig, styles})
 
 function MyApp({ Component, pageProps }) {
-
   const loading = useRouterLoading()
-
   return (
     <Provider>
-    <>
       <ChakraProvider theme={theme}>
         <AnimateSharedLayout >
-
         { loading
             ? (<div><LoadingPage/></div>)
             : (
               <Component {...pageProps} />
             )
         }
-
         </AnimateSharedLayout>
       </ChakraProvider>
-    </>
     </Provider>
   )
 }

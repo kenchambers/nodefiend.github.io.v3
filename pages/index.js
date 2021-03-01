@@ -1,6 +1,4 @@
-import { motion } from "framer-motion"
-import Link from 'next/link'
-import { Text, Box, Heading, Center } from "@chakra-ui/react"
+import { Text, Heading, Center } from "@chakra-ui/react"
 import Layout from '../components/layout'
 import Logo from '../components/logo'
 

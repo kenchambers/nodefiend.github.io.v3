@@ -1,3 +1,15 @@
+TO DEPLOY:
+
+npm run build
+
+vercel.com
+
+
+DEV TO
+API key: 5uXkciHcp3GNJDNJq8ARohGT
+
+
+
 Color Mode:
 
 https://colorhunt.co/palettes/dark

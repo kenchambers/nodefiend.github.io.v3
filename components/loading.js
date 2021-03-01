@@ -1,3 +1,6 @@
+import { motion, AnimatePresence } from "framer-motion"
+import { Box, Image, Grid, GridItem, useColorMode, Heading } from "@chakra-ui/react"
+
 export default function () {
   return (
     <div>

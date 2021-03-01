@@ -1,9 +1,23 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import Layout from '../../components/layout'
+import { useEffect } from 'react'
+import axios from 'axios'
 
+
+
+async function fetchDevArticles () {
+  const response = await axios.get('https://dev.to/api/articles?username=nodefiend')
+
+  console.log(response)
+}
 
 export default function Blog() {
+
+  useEffect(()=>{
+    fetchDevArticles()
+  }, [])
+
   return (
     <Layout>
       <Head>
