@@ -1,3 +1,21 @@
+Color Mode:
+
+https://colorhunt.co/palettes/dark
+
+darkmode:
+#202040
+#543864
+#ff6363
+#ffbd69
+
+lightmode:
+#e3dfc8
+#f5f1da
+#96bb7c
+#eebb4d
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -37,11 +55,13 @@ NOTES ON NODEFIEND.GITHUB.IO:
 
 https://99designs.com/blog/creative-inspiration/color-combinations/
 
-Darkmode: #18
-#d902ee, #ffd79d, #f162ff, #320d3e
+https://colorhunt.co/palettes/dark
 
-LightMode: #30
-#829079, #ede6b9, #b9925e,
+<!-- Darkmode: #18 -->
+<!-- #d902ee, #ffd79d, #f162ff, #320d3e -->
+
+<!-- LightMode: #30 -->
+<!-- #829079, #ede6b9, #b9925e, -->
 
 ANIMATION BETWEEN PAGES:
 

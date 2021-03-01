@@ -1,71 +1,57 @@
 import '../styles/globals.scss'
 import { extendTheme } from "@chakra-ui/react"
 import { ChakraProvider } from "@chakra-ui/react"
+import { mode } from '@chakra-ui/theme-tools';
 
 import { AnimateSharedLayout, motion } from "framer-motion"
 import { useRouter } from 'next/router';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, createContext} from 'react';
 import { Skeleton, SkeletonCircle, SkeletonText, Box, Image } from "@chakra-ui/react"
+import { Provider } from '../contexts'
+import LoadingPage from '../components/loading'
+import { chakraConfig, colors, font } from '../constants'
+
+//
+// darkmode:
+// #202040
+// #543864
+// #ff6363
+// #ffbd69
+//
+// lightmode:
+// #e3dfc8
+// #f5f1da
+// #96bb7c
+// #eebb4d
 
 
 
 
-// https://coolors.co/palettes/trending
-// https://chakra-ui.com/docs/theming/customize-theme
-// OVERWRITE DARKMODE: https://stackoverflow.com/a/65104049
+const styles = {
+  global: props => ({
+    body: {
+      color: mode('#505050', '#ffbd69')(props),
+      bg: mode('#f5f1da', '#202040')(props),
+      fontFamily: 'Montserrat-Light',
+      fontSize: '1em',
+      fontWeight: 300,
+    },
+  }),
+};
 
-const LoadingPage = () => {
-  return (
-    <div>
-      <h1>LOADING</h1>
-      <motion.figure
-        layoutId="catImage">
-        <Box boxSize="sm">
-          <Image src="https://i.kym-cdn.com/entries/icons/original/000/035/692/cover1.jpg" alt="Segun Adebayo" />
-        </Box>
-      </motion.figure>
-    </div>
-  )
-}
+const components = {
+  // Box: {
+  //   // setup light/dark mode component defaults
+  //   baseStyle: props => ({
+  //     dialog: {
+  //       bg: mode('#e3dfc8', '#543864')(props),
+  //     },
+  //   }),
+  // },
+};
 
-const colors = {
-  brand: {
-    900: "#1a365d",
-    800: "#153e75",
-    700: "#2a69ac",
-  },
-}
 
-const font = {
-  fonts: {
-    body: "system-ui, sans-serif",
-    heading: "PoiretOne-Regular, serif",
-    mono: "Menlo, monospace",
-  },
-  fontSizes: {
-    xs: "0.75rem",
-    sm: "0.875rem",
-    md: "1rem",
-    lg: "1.125rem",
-    xl: "1.25rem",
-    "2xl": "1.5rem",
-    "3xl": "1.875rem",
-    "4xl": "2.25rem",
-    "5xl": "3rem",
-    "6xl": "3.75rem",
-    "7xl": "4.5rem",
-    "8xl": "6rem",
-    "9xl": "8rem",
-  },
-}
-
-const config = {
-  initialColorMode: 'light',
-  useSystemColorMode: true,
-}
-
-export const theme = extendTheme({ font, config })
-
+export const theme = extendTheme({ font, chakraConfig, styles, components})
 
 const useRouterLoading = () => {
   const Router = useRouter()
@@ -85,24 +71,27 @@ const useRouterLoading = () => {
   return loading
 }
 
-
 function MyApp({ Component, pageProps }) {
 
   const loading = useRouterLoading()
 
   return (
+    <Provider>
     <>
       <ChakraProvider theme={theme}>
         <AnimateSharedLayout >
+
         { loading
             ? (<div><LoadingPage/></div>)
             : (
               <Component {...pageProps} />
             )
         }
+
         </AnimateSharedLayout>
       </ChakraProvider>
     </>
+    </Provider>
   )
 }
 
