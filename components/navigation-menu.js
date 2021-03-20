@@ -11,13 +11,13 @@ export default function NavigationMenu({show}){
   const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
 
-
   return (
-    <AnimatePresence >
+    <AnimatePresence exitBeforeEnter>
       {
         show && (
-          <>
+          <div style={{position: 'fixed', width: '100%', zIndex: 99999}}>
             <motion.div
+              style={{position: 'relative'}}
               initial={{ height: '0%', width: '0%' }}
               animate={{ height: '100%', width: '100%',transition: {duration: 0.7}  }}
               exit={{ height: '0%', width: '0%',transition: {delay: 1.5, duration: 0.5} }}
@@ -59,7 +59,7 @@ export default function NavigationMenu({show}){
                 </motion.div>
               </Box>
             </motion.div>
-          </>
+          </div>
         )
       }
     </AnimatePresence>

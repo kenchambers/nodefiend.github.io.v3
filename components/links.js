@@ -1,14 +1,10 @@
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from 'next/link'
 import {Context} from '../contexts'
 import { useState, useContext } from 'react'
 import { Box, Grid, GridItem, useColorMode, Heading } from "@chakra-ui/react"
 import { useRouter } from 'next/router'
 import React from 'react'
-// import {Context} from '../contexts'
-
-
-
 
 export default function Links () {
   const { state, dispatch } = useContext(Context);
@@ -23,8 +19,12 @@ export default function Links () {
 
   const onLinkClick = (e, href) => {
     e.preventDefault()
-    router.push(href)
+
     close()
+
+    setTimeout(()=>{
+      router.push(href)
+    }, 2000)
   }
 
   const { navMenuOpen } = state;

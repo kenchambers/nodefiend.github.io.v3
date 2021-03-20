@@ -2,12 +2,10 @@ import Head from 'next/head'
 import styles from './Home.module.scss'
 import { motion } from "framer-motion"
 import Link from 'next/link'
-import Layout from '../../components/layout'
 import { Image, Box, Text , Stack} from "@chakra-ui/react"
 
 export default function Home() {
   return (
-    <Layout>
       <section style={{position: 'absolute', display: 'block'}}>
         <Box float={{md: 'left'}} bg="red.200" w={['100%', null, '50%']} h={['50vh', null, '80vh']}>
           This is a box
@@ -54,12 +52,12 @@ export default function Home() {
             <motion.figure
               layoutId="catImage">
               <Box p={4} display={{ md: "flex" }}>
-                    <Image
-                      borderRadius="lg"
-                      width={{ md: 80 }}
-                      src="https://i.kym-cdn.com/entries/icons/original/000/035/692/cover1.jpg"
-                      alt="Woman paying for a purchase"
-                    />
+                <Image
+                  borderRadius="lg"
+                  width={{ md: 80 }}
+                  src="https://i.kym-cdn.com/entries/icons/original/000/035/692/cover1.jpg"
+                  alt="Woman paying for a purchase"
+                />
               </Box>
             </motion.figure>
           </div>
@@ -70,7 +68,6 @@ export default function Home() {
 
         </Box>
       </section>
-    </Layout>
   )
 }
 

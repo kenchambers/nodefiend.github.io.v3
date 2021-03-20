@@ -5,4 +5,16 @@ export function ui(state, action) {
     default:
       return state;
   }
+  switch (action.type) {
+    case "SHOW_LOADER":
+      return { ...state, showLoader: true };
+    default:
+      return state;
+  }
+  switch (action.type) {
+    case "HIDE_LOADER":
+      return { ...state, showLoader: false };
+    default:
+      return state;
+  }
 }

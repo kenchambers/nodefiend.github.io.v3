@@ -1,38 +1,125 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import Layout from '../../components/layout'
-import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import { Context } from '../../contexts'
+import { Container, useColorMode, Box,  Heading, Wrap, WrapItem, Center, Icon } from "@chakra-ui/react"
+import { motion, AnimatePresence } from "framer-motion"
+import Image from 'next/image';
 
+// https://codesandbox.io/s/app-store-ui-using-react-and-framer-motion-ecgc2?file=/src/CardList.tsx:432-440
+// https://chakra-ui.com/docs/layout/box
 
-
-async function fetchDevArticles () {
+async function fetchDevArticles (dispatch) {
   const response = await axios.get('https://dev.to/api/articles?username=nodefiend')
+  // console.log(response.data);
+  dispatch({type: "GET_ARTICLES", payload: response.data})
 
-  console.log(response)
 }
 
-export default function Blog() {
 
-  useEffect(()=>{
-    fetchDevArticles()
-  }, [])
+function PostLink({ children, href, id }) {
+  const router = useRouter()
+
+  const handleClick = (e) => {
+    e.preventDefault()
+
+    router.push('/posts/[id]', `/posts/${id}`, {
+      shallow: true,
+    })
+  }
 
   return (
-    <Layout>
+    <a href={href} onClick={handleClick} >
+      {children}
+    </a>
+  )
+}
+
+function PostsList({articles}){
+  const {colorMode} = useColorMode()
+  const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
+  return (
+    <Container centerContent>
+      <Center id="blal" w={["100%","612px",'890px']}>
+        <Container maxW="900px" centerContent>
+          <Box>
+            <Container maxW="900px" centerContent>
+              <Wrap>
+                <>
+                  {
+                    articles.map((post, i)=>{
+                        return(
+                          <div key={i}>
+                            <WrapItem key={i}>
+                              <Center m="10px" w={["100%","250px"]} mt="2vw">
+                                <div
+                                  style={{
+                                  border: `4px solid ${accentColor}`,
+                                  }}>
+
+                                  <PostLink href={`posts/${post.id}`} id={post.id}>
+                                    <Box>
+                                        <Image key={i} width="250px" height="100%" src={post.cover_image} alt={post.cover_image} />
+                                      {post.title}
+                                    </Box>
+                                  </PostLink>
+
+                                </div>
+                              </Center>
+                            </WrapItem>
+                          </div>
+                        )})
+
+                  }
+
+                </>
+
+              </Wrap>
+            </Container>
+          </Box>
+        </Container>
+      </Center>
+    </Container>
+  )
+}
+
+export {PostsList}
+
+export default function Blog() {
+  const { state, dispatch } = useContext(Context);
+
+  const router = useRouter()
+
+
+
+  const { articles }  = state;
+  const loaded = !!articles.length;
+
+  useEffect(()=>{
+    fetchDevArticles(dispatch)
+
+  }, [dispatch])
+
+
+
+  return (
+    <div style={{width: '100%', height: 'calc(100vh - 72px)', border: '5px dashed red', overflowY: 'scroll'}}>
       <Head>
         <title>Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-        <h1>Blog</h1>
-        <h2>
-          <Link href="/">
-            <a>Back to home</a>
-          </Link>
-        </h2>
-      </div>
+        <Heading>
+          Posts
+        </Heading>
+        <PostsList articles={articles}/>
 
-    </Layout>
+      <Link href="/">
+          <a>Back to home</a>
+      </Link>
+    </div>
   )
+
 }
