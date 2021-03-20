@@ -73,10 +73,11 @@ export default function Links () {
         animate={{ opacity: 1, height: '100%', transition: { duration: 1, delay: 0.4 }}}
         exit={{ opacity: 0, height: '0%', transition: { delay: 2 }}}>
         <Grid
+          h={['50vh', '50vh', '50vh', 'calc(100vh - 72px)']}
           templateRows="repeat(2, 1fr)"
           templateColumns="repeat(4, 1fr)"
           gap={[2,2,4,4]}
-          style={{ overflow: 'hidden', backgroundColor: accentColor }}
+          style={{  overflow: 'hidden', backgroundColor: accentColor }}
         >
           <GridItem colSpan={2}>
             <motion.div
@@ -85,7 +86,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 1, delay: 0.8 }}}
               exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.8, delay: 0.8} }}>
-                <Box h={["30vw", "45vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/about')}>
+                <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/about')}>
                   <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                     About
                   </Heading>
@@ -100,7 +101,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 1, delay: 1.2 }}}
               exit={{ opacity: 0 , x: 0 , height: '0%', transition: {duration: 0.8,  delay: 0.6 }}}>
-              <Box h={["30vw", "45vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/work')}>
+              <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/work')}>
                 <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                   Work
                 </Heading>
@@ -115,7 +116,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 1, delay: 1.6}}}
               exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.8, delay: 0.4}  }}>
-              <Box h={["30vw", "45vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/posts')}>
+              <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/posts')}>
                 <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                   Posts
                 </Heading>
@@ -130,7 +131,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 1, delay: 1.2} }}
               exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.8, delay: 0.2}  }}>
-              <Box h={["30vw", "45vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/tools')}>
+              <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/tools')}>
                 <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                   Tools
                 </Heading>
