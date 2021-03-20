@@ -111,11 +111,7 @@ export default function Blog() {
         <title>Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Heading>
-          Posts
-        </Heading>
         <PostsList articles={articles}/>
-
       <Link href="/">
           <a>Back to home</a>
       </Link>

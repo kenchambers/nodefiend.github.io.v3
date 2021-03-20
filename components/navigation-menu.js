@@ -25,8 +25,8 @@ export default function NavigationMenu({show}){
             <Box
               bg={accentColor}
               float={{md: 'left'}}
-              w={['100%', '%100', '100%', '50%' ]}
-              h={['100%', '%100', '100%','100%']}>
+              w={['100%', '100%', '100%', '50%' ]}
+              h={['100%', '100%', '100%','100%']}>
                 <motion.div
                   initial={{ height: '0%', opacity: 1 }}
                   animate={{ height: '100%', opacity: 1, transition: {delay: 1.5} }}
