@@ -35,7 +35,7 @@ const ringsStyles = {
 
 export default function Loading () {
   return (
-    <div style={{width: '100%', height: 'calc(100vh - 72px)', border: '5px dashed red', overflowY: 'scroll'}}>
+    <>
       <div style={{ backgroundColor: 'white', height: '100%'}}>
         <div style={circleStyles}/>
         <div style={ringsContainer}>
@@ -45,7 +45,7 @@ export default function Loading () {
           <Image src="/rings.svg" alt="me" style={ringsStyles} />
         </div>
       </div>
-    </div>
+    </>
 
   )
 }

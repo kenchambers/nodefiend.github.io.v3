@@ -3,7 +3,7 @@ import {useEffect, useState, createContext} from 'react';
 
 // to create an delay for animation use
 // animationDelay, other wise remove this
-const animationDelay = 4000
+const animationDelay = 1000
 
 const useRouterLoading = () => {
   const Router = useRouter()

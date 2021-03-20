@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 export default function Tools() {
   return (
-    <div style={{width: '100%', height: 'calc(100vh - 72px)', border: '5px dashed red', overflowY: 'scroll'}}>
+    <>
 
       <Head>
         <title>Tools</title>
@@ -17,6 +17,6 @@ export default function Tools() {
         </Link>
       </h2>
       </div>
-    </div>
+    </>
   )
 }

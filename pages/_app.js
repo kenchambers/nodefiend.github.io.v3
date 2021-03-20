@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 import { extendTheme } from "@chakra-ui/react"
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, useColorMode } from "@chakra-ui/react"
 import { mode } from '@chakra-ui/theme-tools';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 import { Skeleton, SkeletonCircle, SkeletonText, Box } from "@chakra-ui/react"
@@ -29,13 +29,26 @@ const styles = {
   global: props => ({
     body: {
       color: mode('#505050', '#ffbd69')(props),
-      bg: mode('#f5f1da', '#202040')(props),
+      bg: mode('#96bb7c', '#ff6363')(props),
       fontFamily: 'Montserrat-Light',
       fontSize: '1em',
       fontWeight: 300,
     },
   }),
 };
+
+const ComponentContainer = ({children}) => {
+
+    const {colorMode} = useColorMode()
+
+    const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
+
+  return (
+    <div style={{width: '100%', height: 'calc(100vh - 72px)', overflowY: 'scroll', backgroundColor: boxBgColor2}}>
+      {children}
+    </div>
+  )
+}
 
 export const theme = extendTheme({ font, chakraConfig, styles})
 
@@ -84,10 +97,15 @@ function MyApp({ Component, pageProps, router }) {
 
                     { routerLoading
                         ? (
-                        <Loading/>
+                          <ComponentContainer>
+                            <Loading/>
+                          </ComponentContainer>
+
                         )
                         : (
-                        <Component {...pageProps} />
+                          <ComponentContainer {...pageProps}>
+                            <Component {...pageProps} />
+                          </ComponentContainer>
                         )
                     }
                   </motion.div>

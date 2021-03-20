@@ -4,7 +4,7 @@ import { Container } from "@chakra-ui/react"
 
 export default function Work() {
   return (
-    <div style={{width: '100%', height: 'calc(100vh - 72px)', border: '5px dashed red', overflowY: 'scroll'}}>
+    <>
 
       <Head>
         <title>Work</title>
@@ -18,7 +18,7 @@ export default function Work() {
         </Link>
       </h2>
       </div>
-    </div>
+    </>
 
   )
 }

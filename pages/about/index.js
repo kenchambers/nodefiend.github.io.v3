@@ -10,7 +10,7 @@ const item = { hidden: { x: -10, opacity: 1 } }
 
 export default function About() {
   return (
-    <div style={{width: '100%', height: 'calc(100vh - 72px)', border: '5px dashed red', overflowY: 'scroll'}}>
+    <>
       <Head>
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,6 +22,6 @@ export default function About() {
         </Heading>
 
       </div>
-    </div>
+    </>
   )
 }

@@ -106,7 +106,7 @@ export default function Blog() {
 
 
   return (
-    <div style={{width: '100%', height: 'calc(100vh - 72px)', border: '5px dashed red', overflowY: 'scroll'}}>
+    <>
       <Head>
         <title>Blog</title>
         <link rel="icon" href="/favicon.ico" />
@@ -119,7 +119,7 @@ export default function Blog() {
       <Link href="/">
           <a>Back to home</a>
       </Link>
-    </div>
+    </>
   )
 
 }
