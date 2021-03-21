@@ -1,17 +1,14 @@
 import '../styles/globals.scss'
-import { extendTheme } from "@chakra-ui/react"
-import { ChakraProvider, useColorMode } from "@chakra-ui/react"
+import {  extendTheme,
+          ChakraProvider,
+          useColorMode } from "@chakra-ui/react"
 import { mode } from '@chakra-ui/theme-tools';
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
-import { Skeleton, SkeletonCircle, SkeletonText, Box } from "@chakra-ui/react"
 import { Provider } from '../contexts'
 import Loading from '../components/loading'
 import { chakraConfig, colors, font } from '../constants'
 import useRouterLoading from '../hooks/use-router-loading'
 import Layout from '../components/layout'
-
-import Image from 'next/image'
-
 
 // darkmode:
 // #202040
@@ -37,83 +34,76 @@ const styles = {
   }),
 };
 
-const ComponentContainer = ({children}) => {
-
-    const {colorMode} = useColorMode()
-
-    const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
+const ComponentContainer = ({ children }) => {
+  const { colorMode } = useColorMode()
+  const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
+  const containerStyles = {
+    width: '100%',
+    height: 'calc(100vh - 72px)',
+    overflowY: 'scroll',
+    backgroundColor: boxBgColor2
+  }
 
   return (
-    <div style={{width: '100%', height: 'calc(100vh - 72px)', overflowY: 'scroll', backgroundColor: boxBgColor2}}>
+    <div style={containerStyles}>
       {children}
     </div>
   )
 }
 
+const containerVariants = {
+  pageInitial: {
+    opacity: 1,
+    x: '-100vw',
+    transition: {
+      delay: 1,
+      duration: 1
+    },
+  },
+  pageAnimate: {
+    opacity: 1,
+    transition: {
+      delay: 1,
+      duration: 1
+    },
+    x: '0vw',
+
+  },
+  pageExit: {
+    opacity: 1,
+    x: '100vw',
+    transition: {
+      delay: 1,
+      duration: 1
+    },
+  }
+}
+
 export const theme = extendTheme({ font, chakraConfig, styles})
 
 function MyApp({ Component, pageProps, router }) {
-
   const routerLoading = useRouterLoading()
-
   return (
     <Provider>
       <ChakraProvider theme={theme}>
-        {/* <AnimateSharedLayout > */}
           <Layout>
             <AnimatePresence exitBeforeEnter>
-              {/* <motion.div
-                style={{height: '100%'}}
-                initial={{opacity: 1, x: -1890}}
-                animate={{opacity: 1, x: 0, transition: {duration: 1, delay: 1.5}}}
-                exit={{opacity: 1, x: -1890}}> */}
-                <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" exit={"pageExit"} variants={{
-                      pageInitial: {
-                        opacity: 1,
-                        x: '-100vw',
-                        transition: {
-                          delay: 1,
-                          duration: 1
-                        },
-                      },
-                      pageAnimate: {
-                        opacity: 1,
-                        transition: {
-                          delay: 1,
-                          duration: 1
-                        },
-                        x: '0vw',
-
-                      },
-                      pageExit: {
-                        opacity: 1,
-                        x: '100vw',
-                        transition: {
-                          delay: 1,
-                          duration: 1
-                        },
-                      }
-                    }}>
-
-                    { routerLoading
-                        ? (
-                          <ComponentContainer>
-                            <Loading/>
-                          </ComponentContainer>
-
-                        )
-                        : (
-                          <ComponentContainer {...pageProps}>
-                            <Component {...pageProps} />
-                          </ComponentContainer>
-                        )
-                    }
-                  </motion.div>
-
-              {/* </motion.div> */}
+              <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" exit={"pageExit"} variants={containerVariants}>
+                  { routerLoading
+                      ? (
+                        <ComponentContainer>
+                          <Loading/>
+                        </ComponentContainer>
+                      )
+                      : (
+                        <ComponentContainer {...pageProps}>
+                          <Component {...pageProps} />
+                        </ComponentContainer>
+                      )
+                  }
+                </motion.div>
             </AnimatePresence>
           </Layout>
-        {/* </AnimateSharedLayout> */}
       </ChakraProvider>
     </Provider>
   )

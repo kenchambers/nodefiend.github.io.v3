@@ -7,5 +7,4 @@ export function devApi(state, action) {
     default:
       return state;
   }
-
 }

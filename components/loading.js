@@ -7,7 +7,6 @@ const circleStyles = {
   backgroundPosition: '50%',
   borderRadius: '50%',
   width: '100%',
-  // maxWidth: '250px',
   height: '250px',
   backgroundImage: 'url(/popcatloader.gif)'
 }
