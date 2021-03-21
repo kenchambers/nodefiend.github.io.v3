@@ -40,7 +40,7 @@ export default function Layout({ children, home }) {
 
   return (
     <div>
-      <header style={{position: 'fixed', zIndex: 999999, width: '100%', backgroundColor: boxBgColor }}>
+      <header className="shadow" style={{position: 'fixed', zIndex: 999999, width: '100%', backgroundColor: boxBgColor }}>
         <Box>
           <Flex>
             <Box p="4" bg="clear">
