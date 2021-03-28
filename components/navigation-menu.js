@@ -4,15 +4,41 @@ import Links from './links'
 import ContactComponent from './contact-component'
 import {FaHome} from 'react-icons/fa'
 import HeroGraphic from './hero-graphic'
+import { useHasMounted } from '../hooks/use-has-mounted'
+import useDeviceDetect from '../hooks/use-device-detect'
 
+
+const darkModeColors = [
+  '#202040',
+  '#543864',
+  '#ff6363',
+  '#ffbd69',
+]
+
+const lightModeColors = [
+  '#e3dfc8',
+  '#f5f1da',
+  '#96bb7c',
+  '#eebb4d',
+]
+
+const r = Math.random()
+
+const mobileScale = [20 + r * 14, 50 + r * 20, 1]
 
 export default function NavigationMenu({show}){
+
+  const hasMounted = useHasMounted();
 
   const {colorMode} = useColorMode()
 
   const boxBgColor = colorMode == "light" ? '#e3dfc8' : '#543864'
   const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
+
+  const colorArray = (colorMode == "light" ? lightModeColors : darkModeColors)
+
+  const isMobile = useDeviceDetect()
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -53,9 +79,10 @@ export default function NavigationMenu({show}){
                 >
                   <Center w={["100vw",null,null,"50vw"]} h="100%" bg={boxBgColor2} >
 
-                    <Box p="2em" style={{position: 'relative'}} bg={boxBgColor} h={["100%", null, '40%', '100vh', '100vh']} w="100%" >
-                        <HeroGraphic />
-                        <Box w="100%" style={{position: 'relative', zIndex: 1000}}>
+                    <Box  style={{position: 'relative'}} bg={boxBgColor} h={["42vh", null, '40%', '100vh', '100vh']} w="100%" >
+                        <HeroGraphic colors={colorArray} scale={isMobile ? mobileScale : null}/>
+                        <Box p="2em" w="100%" style={{position: 'relative', zIndex: 1000}}>
+
                           <Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
                             Ken Chambers
                             <Icon as={FaHome} w={10} h={10} color="grey.500"/>
