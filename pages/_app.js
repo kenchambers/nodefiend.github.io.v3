@@ -70,7 +70,7 @@ const containerVariants = {
 
   },
   pageExit: {
-    opacity: 1,
+    opacity: 0,
     x: '100vw',
     transition: {
       delay: 1,
@@ -83,21 +83,22 @@ export const theme = extendTheme({ font, chakraConfig, styles})
 
 function MyApp({ Component, pageProps, router }) {
   const routerLoading = useRouterLoading()
+
   return (
     <Provider>
       <ChakraProvider theme={theme}>
           <Layout>
             <AnimatePresence exitBeforeEnter>
-              <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" exit={"pageExit"} variants={containerVariants}>
+              <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" exit="pageExit" variants={containerVariants}>
                   { routerLoading
                       ? (
-                        <ComponentContainer>
-                          <Loading/>
+                        <ComponentContainer {...pageProps}>
+                          <Loading {...pageProps}/>
                         </ComponentContainer>
                       )
                       : (
                         <ComponentContainer {...pageProps}>
-                          <Component {...pageProps} />
+                            <Component {...pageProps} />
                         </ComponentContainer>
                       )
                   }

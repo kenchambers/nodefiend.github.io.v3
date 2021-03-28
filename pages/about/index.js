@@ -12,6 +12,7 @@ import {
 
 import { motion } from "framer-motion"
 
+
 const list = { hidden: { opacity: 1 } }
 const item = { hidden: { x: -10, opacity: 1 } }
 
@@ -27,15 +28,14 @@ export default function About() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Wrap>
-
         <WrapItem>
           <Center w={["100vw",null,null,"50vw"]} h="calc(100vh - 72px)" bg={boxBgColor2}>
             <Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
               Ken Chambers
             </Heading>
+
           </Center>
         </WrapItem>
-
         <WrapItem>
           <Center w={["100vw",null,null,"50vw"]} h="calc(100vh - 72px)" bg={boxBgColor2}>
             <Text p="2em" fontSize={["1.5em"]} color={fontColor}>
@@ -43,7 +43,6 @@ export default function About() {
             </Text>
           </Center>
         </WrapItem>
-
       </Wrap>
     </>
   )

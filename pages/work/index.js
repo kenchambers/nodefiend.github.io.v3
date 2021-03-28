@@ -6,12 +6,12 @@ import {  Box,
           Stack,
           Divider,
           Text,
+          Heading,
           UnorderedList,
           ListItem,
           useColorMode } from "@chakra-ui/react"
 
-const workArray = () => [
-
+const workArray = [
   {
     heading: 'Platejoy',
     timeframe: '2019 - Present',
@@ -59,6 +59,8 @@ const workArray = () => [
 
 ]
 const WorkSection = ({ work: { heading, timeframe, title, items }}) => {
+  const { colorMode } = useColorMode()
+  const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
   return (
     <>
       <Divider style={{height: 10, backgroundColor: accentColor}} orientation="horizontal" />
@@ -103,12 +105,13 @@ export default function Work() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Center>
+
         <Container >
           {
-            workArray.map((work) => {
+            workArray.map((work, i) => {
 
               return (
-                <Work work={work}/>
+                <WorkSection key={i} work={work}/>
               )
             })
           }

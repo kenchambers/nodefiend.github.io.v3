@@ -1,7 +1,10 @@
-import { Icon, useColorMode, Button, IconButton,Square, Flex, Box, Spacer, Heading } from "@chakra-ui/react"
+import { Icon, useColorMode, Center, Button, IconButton,Square, Flex, Box, Spacer, Heading } from "@chakra-ui/react"
 import { motion, AnimatePresence, useAnimation , useMotionValue} from 'framer-motion'
 import Links from './links'
 import ContactComponent from './contact-component'
+import {FaHome} from 'react-icons/fa'
+import HeroGraphic from './hero-graphic'
+
 
 export default function NavigationMenu({show}){
 
@@ -48,14 +51,19 @@ export default function NavigationMenu({show}){
                   animate={{ x: 0, height: '100%', opacity: 1 , transition: {delay:0.5, duration: 1}}}
                   exit={{ x: -500, height: '0%', opacity: 0, transition: {delay:0.5, duration: 1}}}
                 >
-                  <Box bg={boxBgColor} h={["100%", null, '40%', '100vh', '100vh']} w="100%" >
-                    <Box  boxSize="sm">
-                      <Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
-                        Ken Chambers
-                      </Heading>
-                      <ContactComponent/>
+                  <Center w={["100vw",null,null,"50vw"]} h="100%" bg={boxBgColor2} >
+
+                    <Box p="2em" style={{position: 'relative'}} bg={boxBgColor} h={["100%", null, '40%', '100vh', '100vh']} w="100%" >
+                        <HeroGraphic />
+                        <Box w="100%" style={{position: 'relative', zIndex: 1000}}>
+                          <Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
+                            Ken Chambers
+                            <Icon as={FaHome} w={10} h={10} color="grey.500"/>
+                          </Heading>
+                          <ContactComponent/>
+                      </Box>
                     </Box>
-                  </Box>
+                  </Center>
                 </motion.div>
               </Box>
             </motion.div>
