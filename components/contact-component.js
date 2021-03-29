@@ -11,14 +11,16 @@ export default function ContactComponent() {
   const { colorMode, toggleColorMode } = useColorMode()
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
 
+  const responsiveIconSize = ['3em', '4em', '3em']
+
   return (
     <Box>
-      <Icon as={RiTwitterLine} viewBox='0 0 48 48' boxSize='2em' w={8} h={8} color={accentColor}/>
-      <Icon as={RiFacebookCircleLine} viewBox='0 0 48 48' boxSize='2em' w={8} h={8} color={accentColor}/>
-      <Icon as={RiInstagramLine} viewBox='0 0 48 48' boxSize='2em' w={8} h={8} color={accentColor}/>
-      <Icon as={RiLinkedinBoxLine} viewBox='0 0 48 48' boxSize='2em' w={8} h={8} color={accentColor}/>
-      <Icon as={RiGithubFill} viewBox='0 0 48 48' boxSize='2em' w={8} h={8} color={accentColor}/>
-      <Icon as={FaDev} viewBox='0 0 48 48' boxSize='2em' w={8} h={8} color={accentColor}/>
+      <Icon as={RiTwitterLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+      <Icon as={RiFacebookCircleLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+      <Icon as={RiInstagramLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+      <Icon as={RiLinkedinBoxLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+      <Icon as={RiGithubFill} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+      <Icon as={FaDev} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
     </Box>
   )
 }

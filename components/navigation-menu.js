@@ -79,7 +79,7 @@ export default function NavigationMenu({show}){
                 >
                   <Center w={["100vw",null,null,"50vw"]} h="100%" bg={boxBgColor2} >
 
-                    <Box  style={{position: 'relative'}} bg={boxBgColor} h={["42vh", null, '40%', '100vh', '100vh']} w="100%" >
+                    <Box  style={{position: 'relative'}} bg={boxBgColor} h={["42vh", "42vh", "42vh", '100vh', '100vh']} w="100%" >
                         <HeroGraphic colors={colorArray} scale={isMobile ? mobileScale : null}/>
                         <Box p="2em" w="100%" style={{position: 'relative', zIndex: 1000}}>
 

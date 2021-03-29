@@ -62,7 +62,7 @@ export default function Links () {
   }
 
   const headingFontSize = ['2em', null, '30px', '50px']
-  const subHeadingFontSize = { base: "16px", md: "26px", lg: "36px" }
+  const subHeadingFontSize = ["1.5em",null, '2em', null, '2.3em']
   return (
     <motion.div
       initial="hidden"

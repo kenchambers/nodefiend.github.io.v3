@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { Context } from '../../contexts'
-import { Container, useColorMode, Box, Wrap, WrapItem, Center } from "@chakra-ui/react"
+import { Tag, Heading, Container, useColorMode, Box, Wrap, WrapItem, Center, Text } from "@chakra-ui/react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from 'next/image';
 
@@ -34,6 +34,71 @@ function PostLink({ children, href, id }) {
   )
 }
 
+function TagGenerator({tags}) {
+
+
+  if (tags.length > 0) {
+    return(
+      <>
+        {
+          tags.map((tag)=> {
+            return (
+              <Tag m="1" colorScheme="teal" size="md">
+                {tag}
+              </Tag>
+            )
+          })
+        }
+      </>
+    )
+
+  }
+
+}
+
+function PostComponent({post}) {
+  const { colorMode } = useColorMode()
+  const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
+  const blogTitleFontSize = ['1.2em']
+  const blogTitleColor = colorMode == "light" ? '#eebb4d' : '#ff6363'
+
+  console.log(post);
+
+  const heartsCount = post.positive_reactions_count + post.public_reactions_count
+  const commentsCount = post.comments_count
+  return (
+    <Center m="10px" w={["100%","250px"]} mt="2vw">
+      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" style={{ border: `5px solid ${accentColor}`}}>
+        <PostLink href={`posts/${post.id}`} id={post.id}>
+          <Box>
+            <Image width="300px" height="100%" src={post.cover_image} alt={post.cover_image} />
+
+            <Heading p={'0.6em'} size="lg" fontSize={blogTitleFontSize} color={blogTitleColor} style={{fontFamily: 'Montserrat-Black'}}>
+              {post.title}
+            </Heading>
+
+            <Text p={'0.6em'}>
+              Heart: {heartsCount.toString()}
+            </Text>
+
+            <Text p={'0.6em'}>
+              Comments: {commentsCount.toString()}
+            </Text>
+
+            <Box p={'0.6em'}>
+              {
+                post.tag_list.length && (
+                  <TagGenerator tags={post.tag_list}/>
+                )
+              }
+            </Box>
+          </Box>
+        </PostLink>
+      </Box>
+    </Center>
+  )
+}
+
 function PostsList({articles}){
   const { colorMode } = useColorMode()
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
@@ -44,32 +109,14 @@ function PostsList({articles}){
           <Box>
             <Container maxW="900px" centerContent>
               <Wrap>
-                <>
                   {
                     articles.map((post, i)=>{
                       return(
-                        <div key={i}>
-                          <WrapItem key={i}>
-                            <Center m="10px" w={["100%","250px"]} mt="2vw">
-                              <div
-                                style={{
-                                border: `4px solid ${accentColor}`,
-                                }}>
-
-                                <PostLink href={`posts/${post.id}`} id={post.id}>
-                                  <Box>
-                                      <Image key={i} width="250px" height="100%" src={post.cover_image} alt={post.cover_image} />
-                                    {post.title}
-                                  </Box>
-                                </PostLink>
-
-                              </div>
-                            </Center>
-                          </WrapItem>
-                        </div>
+                        <WrapItem key={i}>
+                          <PostComponent post={post}/>
+                        </WrapItem>
                       )})
                   }
-                </>
               </Wrap>
             </Container>
           </Box>
