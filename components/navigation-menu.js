@@ -83,7 +83,7 @@ export default function NavigationMenu({show}){
                         <HeroGraphic colors={colorArray} scale={isMobile ? mobileScale : null}/>
                         <Box p="2em" w="100%" style={{position: 'relative', zIndex: 1000}}>
 
-                          <Heading size="lg" fontSize="50px" style={{fontFamily: 'PoiretOne-Regular'}}>
+                          <Heading size="lg" fontSize={["3.5em", null, "4.5em", '5.5em']} style={{fontFamily: 'PoiretOne-Regular'}}>
                             Ken Chambers
                             <Icon as={FaHome} w={10} h={10} color="grey.500"/>
                           </Heading>

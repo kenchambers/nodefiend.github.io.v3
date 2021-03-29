@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import Link from 'next/link'
 import {Context} from '../contexts'
 import { useState, useContext } from 'react'
-import { Box, Grid, GridItem, useColorMode, Heading } from "@chakra-ui/react"
+import { Box, Grid, GridItem, useColorMode, Heading, Text } from "@chakra-ui/react"
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -61,8 +61,8 @@ export default function Links () {
     },
   }
 
-  const headingFontSize = ['1em', null, '30px', '50px']
-
+  const headingFontSize = ['2em', null, '30px', '50px']
+  const subHeadingFontSize = { base: "16px", md: "26px", lg: "36px" }
   return (
     <motion.div
       initial="hidden"
@@ -90,7 +90,9 @@ export default function Links () {
                   <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                     About
                   </Heading>
-                  <p>who i think i am</p>
+                  <Text fontSize={subHeadingFontSize}>
+                    who i think i am
+                  </Text>
                 </Box>
             </motion.div>
           </GridItem>
@@ -105,7 +107,9 @@ export default function Links () {
                 <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                   Work
                 </Heading>
-                <p>code I've committed</p>
+                <Text fontSize={subHeadingFontSize}>
+                  code I've committed
+                </Text>
               </Box>
             </motion.div>
           </GridItem>
@@ -120,7 +124,9 @@ export default function Links () {
                 <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                   Posts
                 </Heading>
-                <p>Trying to help the Community</p>
+                <Text fontSize={subHeadingFontSize}>
+                  Trying to help the Community
+                </Text>
               </Box>
             </motion.div>
           </GridItem>
@@ -135,9 +141,9 @@ export default function Links () {
                 <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
                   Tools
                 </Heading>
-                <p>
+                <Text fontSize={subHeadingFontSize}>
                   A little about what I use
-                </p>
+                </Text>
               </Box>
             </motion.div>
           </GridItem>

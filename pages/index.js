@@ -1,4 +1,4 @@
-import { Text, Heading, Center, useColorMode } from "@chakra-ui/react"
+import { Box,Text, Heading, Center, useColorMode } from "@chakra-ui/react"
 import Logo from '../components/logo'
 import HeroGraphic from '../components/hero-graphic'
 import { useHasMounted } from '../hooks/use-has-mounted'
@@ -29,9 +29,12 @@ export default function Index() {
       <HeroGraphic colors={colorArray}/>
       <Center bg="clear" h="100vh" w="100%">
         <Heading size="lg" style={{ fontFamily: 'PoiretOne-Regular', position: 'absolute', zIndex: 999999}}>
-          <Text fontSize={{ base: "30px", md: "76px", lg: "75px" }}>
-            Hi, I'm Ken Chambers
-          </Text>
+          <Box p="2em" w="100%">
+            <Text fontSize={{ base: "4rem", md: "76px", lg: "75px" }}>
+              Hi, I'm Ken Chambers
+            </Text>
+          </Box>
+
         </Heading>
       </Center>
     </section>
