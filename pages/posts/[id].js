@@ -61,53 +61,51 @@ function Article ({currentArticle: {
 
   return (
     <>
-      <motion.div>
-          <Image  width="2000px" height="500px" src={cover_image} alt={cover_image} />
 
-          <Head>
-            <title>{title}</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-        <div
-          style={{
-            border: `4px solid ${accentColor}`,
-            borderRadius: '10px',
-            fontSize: "36px",
-            marginBottom: "30px"
-          }}
 
-        >
-          <Link href="/posts" as="/posts">
-            <a>Back to Posts</a>
-          </Link>
-          <h1>{id.toString()}</h1>
+        <Head>
+          <title>{title}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+      <div
+        style={{
+          border: `4px solid ${accentColor}`,
+          borderRadius: '10px',
+          fontSize: "36px",
+          marginBottom: "30px"
+        }}
+      >
+        <Image width="100vw" height="auto" src={cover_image} alt={cover_image} />
+        <Link href="/posts" as="/posts">
+          <a>Back to Posts</a>
+        </Link>
+        <h1>{id.toString()}</h1>
 
-          <Box w={["250px"]} maxW="sm" overflow="hidden">
+        <Box w={["250px"]} maxW="sm" overflow="hidden">
 
-            <Box mb="2em">
-              <Box
-                color={accentColor}
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {title}
-              </Box>
-              <Box
-               mt="1"
-               fontWeight="semibold"
-               as="h4"
-               lineHeight="tight"
-               isTruncated
-             >
-               {description}
-             </Box>
+          <Box mb="2em">
+            <Box
+              color={accentColor}
+              fontWeight="semibold"
+              letterSpacing="wide"
+              fontSize="xs"
+              textTransform="uppercase"
+              ml="2"
+            >
+              {title}
             </Box>
+            <Box
+             mt="1"
+             fontWeight="semibold"
+             as="h4"
+             lineHeight="tight"
+             isTruncated
+           >
+             {description}
+           </Box>
           </Box>
-        </div>
-      </motion.div>
+        </Box>
+      </div>
     </>
   )
 }

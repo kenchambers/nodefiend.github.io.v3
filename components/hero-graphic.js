@@ -14,7 +14,8 @@ import { a } from 'react-spring/three.cjs';
 
 const r = Math.random()
 
-const defaultColors = ['#A2CCB6', '#FCEEB5', '#EE786E', '#e0feff', 'lightpink', 'lightblue']
+const defaultColors = ['#A2CCB6', '#FCEEB5', '#EE786E', '#E0FEFF', '#EE786E', '#FCEEB5']
+
 
 const defaultScale = [1 + r * 14, 1 + r * 14, 1]
 

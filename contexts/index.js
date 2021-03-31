@@ -9,6 +9,7 @@ import { devApi } from "./reducers/devApi";
 const initialState = {
   navMenuOpen: false,
   showLoader: false,
+  showMainCanvas: true,
   articles: [],
   currentArticle: null,
 };

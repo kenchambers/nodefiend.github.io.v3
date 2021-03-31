@@ -12,21 +12,28 @@ import { Context } from '../contexts'
 
 export default function Layout({ children, home }) {
   const { state, dispatch } = useContext(Context);
+  const { navMenuOpen,showMainCanvas }  = state;
+
   const [ toggleButtonState , setToggleButtonState ] = useState(false)
   const { colorMode } = useColorMode()
   const boxBgColor = colorMode == "light" ? '#e3dfc8' : '#543864'
 
   const open = () => dispatch({type: "TOGGLE_NAV", payload: true})
   const close = () => dispatch({type: "TOGGLE_NAV", payload: false})
-
-  const { navMenuOpen }  = state;
+  const displayMainCanvas = () => dispatch({type: "SHOW_MAIN_CANVAS"})
+  const hideMainCanvas = () => dispatch({type: "HIDE_MAIN_CANVAS"})
 
   const debounceToggleMenuNav = () => {
     const _disableToggle = () => {
       setToggleButtonState(true)
       setTimeout(()=>{
         setToggleButtonState(false)
-      }, 3000)
+        if (showMainCanvas){
+          hideMainCanvas()
+        }else{
+          displayMainCanvas()
+        }
+      }, 1500)
     }
     if (!navMenuOpen) {
       open()

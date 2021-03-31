@@ -7,9 +7,11 @@ import { useRouter } from 'next/router'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { Context } from '../../contexts'
-import { Tag, Heading, Container, useColorMode, Box, Wrap, WrapItem, Center, Text } from "@chakra-ui/react"
+import { SimpleGrid, Tag, Heading, Icon, Container, useColorMode, Box, Wrap, WrapItem, Center, Text } from "@chakra-ui/react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from 'next/image';
+import { FaHeart, FaComment } from 'react-icons/fa'
+
 
 async function fetchDevArticles (dispatch) {
   const response = await axios.get('https://dev.to/api/articles?username=nodefiend')
@@ -22,54 +24,49 @@ function PostLink({ children, href, id }) {
   const handleClick = (e) => {
     e.preventDefault()
 
-    router.push('/posts/[id]', `/posts/${id}`, {
-      shallow: true,
-    })
+    router.push('/posts/[id]', `/posts/${id}`)
   }
 
   return (
-    <a href={href} onClick={handleClick} >
+    <a href={href}>
       {children}
     </a>
   )
 }
 
 function TagGenerator({tags}) {
-
-
   if (tags.length > 0) {
     return(
       <>
         {
-          tags.map((tag)=> {
+          tags.map((tag,i)=> {
             return (
-              <Tag m="1" colorScheme="teal" size="md">
-                {tag}
+              <Tag key={i} m="1" colorScheme="teal" size="md">
+                #{tag}
               </Tag>
             )
           })
         }
       </>
     )
-
   }
-
 }
 
 function PostComponent({post}) {
   const { colorMode } = useColorMode()
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
   const blogTitleFontSize = ['1.2em']
-  const blogTitleColor = colorMode == "light" ? '#eebb4d' : '#ff6363'
+  const blogTitleColor = colorMode == "light" ? '#505050' : '#ff6363'
 
-  console.log(post);
+  const postURL = post.canonical_url
+  const humanReadableCreatedAt = new Date(post.created_at).toDateString()
 
   const heartsCount = post.positive_reactions_count + post.public_reactions_count
   const commentsCount = post.comments_count
   return (
     <Center m="10px" w={["100%","250px"]} mt="2vw">
       <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" style={{ border: `5px solid ${accentColor}`}}>
-        <PostLink href={`posts/${post.id}`} id={post.id}>
+        <PostLink href={postURL} id={post.id}>
           <Box>
             <Image width="300px" height="100%" src={post.cover_image} alt={post.cover_image} />
 
@@ -77,17 +74,30 @@ function PostComponent({post}) {
               {post.title}
             </Heading>
 
-            <Text p={'0.6em'}>
-              Heart: {heartsCount.toString()}
+            <Text p={'0.6em'} color={blogTitleColor}>
+              { humanReadableCreatedAt }
             </Text>
 
-            <Text p={'0.6em'}>
-              Comments: {commentsCount.toString()}
-            </Text>
+            <Box style={{width: 150}}>
+              <SimpleGrid columns={2} >
+                <Box id="cheeb">
+                  <Text p={'0.6em'}>
+                    {heartsCount.toString()} <Icon as={FaHeart} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color="red"/>
+                  </Text>
+                </Box>
+                <Box>
+                  <Text p={'0.6em'}>
+                    {commentsCount.toString()} <Icon as={FaComment} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color={blogTitleColor}/>
+                  </Text>
+                </Box>
+              </SimpleGrid>
+            </Box>
+
+
 
             <Box p={'0.6em'}>
               {
-                post.tag_list.length && (
+                post.tag_list.length > 0 && (
                   <TagGenerator tags={post.tag_list}/>
                 )
               }

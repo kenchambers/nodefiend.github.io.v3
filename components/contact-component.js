@@ -7,20 +7,57 @@ import {RiGithubFill} from 'react-icons/ri'
 import { FaDev } from 'react-icons/fa'
 import { RiTwitterLine } from 'react-icons/ri'
 
-export default function ContactComponent() {
+const socialMediaArray = [
+  {
+    as: RiTwitterLine,
+    href: 'https://twitter.com/eventlisteners?lang=en'
+  },
+  {
+    as: RiFacebookCircleLine,
+    href: 'https://www.facebook.com/kenneth.chambers.925/'
+  },
+  {
+    as: RiInstagramLine,
+    href: 'https://www.instagram.com/chowderheads/'
+  },
+  {
+    as: RiLinkedinBoxLine,
+    href: 'https://www.linkedin.com/in/codeaholic/'
+  },
+  {
+    as: RiGithubFill,
+    href: 'https://github.com/nodefiend'
+  },
+  {
+    as: FaDev,
+    href: 'https://dev.to/nodefiend'
+  }
+]
+
+function SocialMediaIconLink ({as, href}) {
   const { colorMode, toggleColorMode } = useColorMode()
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
-
   const responsiveIconSize = ['3em', '4em', '3em']
+  return (
+    <a href={href}>
+      <Icon as={as} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+    </a>
+  )
+}
+
+export default function ContactComponent() {
+
 
   return (
     <Box>
-      <Icon as={RiTwitterLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
-      <Icon as={RiFacebookCircleLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
-      <Icon as={RiInstagramLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
-      <Icon as={RiLinkedinBoxLine} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
-      <Icon as={RiGithubFill} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
-      <Icon as={FaDev} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
+      {
+        socialMediaArray.map((each,i) => {
+          const { as,href } = each;
+          return (
+            <SocialMediaIconLink key={i} as={as} href={href}/>
+          )
+        })
+      }
     </Box>
   )
 }
