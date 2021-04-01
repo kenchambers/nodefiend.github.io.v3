@@ -3,22 +3,7 @@ import Logo from '../components/logo'
 import HeroGraphic from '../components/hero-graphic'
 import { useHasMounted } from '../hooks/use-has-mounted'
 import { Context } from '../contexts'
-
 import {useContext} from 'react'
-
-const darkModeColors = [
-  '#202040',
-  '#543864',
-  '#ff6363',
-  '#ffbd69',
-]
-
-const lightModeColors = [
-  '#e3dfc8',
-  '#f5f1da',
-  '#96bb7c',
-  '#eebb4d',
-]
 
 export default function Index() {
 
@@ -26,14 +11,13 @@ export default function Index() {
   const { state, dispatch } = useContext(Context);
   const { showMainCanvas }  = state;
 
-  const colorArray = (colorMode == "light" ? lightModeColors : darkModeColors)
+
 
   return (
     <section>
       {
         showMainCanvas &&
-        <HeroGraphic colors={colorArray}/>
-
+        <HeroGraphic/>
       }
       <Center bg="clear" h="100vh" w="100%">
         <Heading size="lg" style={{ fontFamily: 'PoiretOne-Regular', position: 'absolute', zIndex: 999999}}>
@@ -42,7 +26,6 @@ export default function Index() {
               Hi, I'm Ken Chambers
             </Text>
           </Box>
-
         </Heading>
       </Center>
     </section>

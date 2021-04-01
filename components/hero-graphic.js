@@ -4,24 +4,40 @@
 // NOTE: dynamic import with laoding:
 // https://web.dev/code-splitting-with-dynamic-imports-in-nextjs/
 
-// import dynamic from 'next/dynamic'
 import * as THREE from 'three'
 import ReactDOM from 'react-dom'
+import { useColorMode } from "@chakra-ui/react"
 import React, { useEffect } from 'react'
 import { Canvas } from 'react-three-fiber'
 import { useSprings } from 'react-spring/three.cjs';
 import { a } from 'react-spring/three.cjs';
 
+
+export const darkModeColors = [
+  'rgb(84, 56, 100)',
+  'rgb(255, 99, 99)',
+  'rgb(238, 187, 77)',
+]
+
+export const lightModeColors = [
+  'rgb(227, 223, 200)',
+  'rgb(245, 241, 218)',
+  'rgb(150, 187, 124)',
+  'rgb(238, 187, 77)',
+]
+
 const r = Math.random()
 
-const defaultColors = ['#A2CCB6', '#FCEEB5', '#EE786E', '#E0FEFF', '#EE786E', '#FCEEB5']
-
+const defaultColors = lightModeColors
 
 const defaultScale = [1 + r * 14, 1 + r * 14, 1]
 
-export default function HeroGraphic ({colors = defaultColors, scale = defaultScale}) {
+export default React.memo(function HeroGraphic ({scale = defaultScale}) {
+  const { colorMode } = useColorMode()
 
-  const number = 35
+  const colors = (colorMode == "light" ?  lightModeColors : darkModeColors)
+
+  const number = 20
 
   const Lights = () => {
     return (
@@ -80,13 +96,13 @@ export default function HeroGraphic ({colors = defaultColors, scale = defaultSca
   }
 
   return (
-    <div id="BALLS" style={graphicStyles}>
+    <div style={graphicStyles}>
       <Canvas shadowMap camera={{ position: [0, 0, 100], fov: 100 }}>
         <Lights />
         <Content />
       </Canvas>
     </div>
   )
-}
+})
 
 // ReactDOM.render(<HeroGraphic />, document.getElementById('root'))

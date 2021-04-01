@@ -18,7 +18,7 @@ export default class Document extends NextDocument {
            as="font"
            crossOrigin=""
          />
-         <script dangerouslySetInnerHTML={{ __html: `console.warn = function(){}` }} />
+         {/* <script dangerouslySetInnerHTML={{ __html: `console.warn = function(){}` }} /> */}
 
         </Head>
         <body>
