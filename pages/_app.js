@@ -45,26 +45,29 @@ const ComponentContainer = ({ children }) => {
   }
 
   return (
+
     <div style={containerStyles}>
       {children}
     </div>
   )
 }
 
+// Controls main animation for transitions between pages
+
 const containerVariants = {
   pageInitial: {
     opacity: 1,
     x: '-100vw',
     transition: {
-      delay: 1,
-      duration: 1
+      delay: 0.5,
+      duration: 0.5
     },
   },
   pageAnimate: {
     opacity: 1,
     transition: {
-      delay: 1,
-      duration: 1
+      delay: 0.5,
+      duration: 0.5
     },
     x: '0vw',
 
@@ -73,8 +76,8 @@ const containerVariants = {
     opacity: 0,
     x: '100vw',
     transition: {
-      delay: 1,
-      duration: 1
+      delay: 0.5,
+      duration: 0.5
     },
   }
 }
@@ -83,6 +86,23 @@ export const theme = extendTheme({ font, chakraConfig, styles})
 
 function MyApp({ Component, pageProps, router }) {
   const routerLoading = useRouterLoading()
+
+  //
+  // return (
+  //   <Provider>
+  //     <ChakraProvider theme={theme}>
+  //         <Layout>
+  //           <AnimatePresence exitBeforeEnter>
+  //             <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" exit="pageExit" variants={containerVariants}>
+  //                       <ComponentContainer {...pageProps}>
+  //                         <Loading {...pageProps}/>
+  //                       </ComponentContainer>
+  //               </motion.div>
+  //           </AnimatePresence>
+  //         </Layout>
+  //     </ChakraProvider>
+  //   </Provider>
+  // )
 
   return (
     <Provider>

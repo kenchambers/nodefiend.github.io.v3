@@ -3,11 +3,11 @@ import { Box, Image, Grid, GridItem, useColorMode, Heading } from "@chakra-ui/re
 import Rings from '../public/rings.svg';
 
 const circleStyles = {
-  backgroundRepeat: 'no-repeat',
+  backgroundRepeat: 'repeat',
   backgroundPosition: '50%',
-  borderRadius: '50%',
+  // borderRadius: '50%',
   width: '100%',
-  height: '250px',
+  height: '100vh',
   backgroundImage: 'url(/popcatloader.gif)'
 }
 
@@ -15,7 +15,7 @@ const ringsContainer = {
   top: 72,
   position: 'fixed',
   zIndex: '9999999',
-  height: '100%',
+  height: '100vh',
   display: 'inline-block',
   width: '100%',
   textAlign: 'center'
@@ -28,7 +28,7 @@ const loadingTextStyle = {
 }
 
 const ringsStyles = {
-  height: 300,
+  height: '100vh',
   margin: '0 auto',
 }
 
@@ -36,7 +36,12 @@ export default function Loading () {
   return (
     <>
       <div style={{ backgroundColor: 'white', height: '100%'}}>
-        <div style={circleStyles}/>
+        <motion.div
+          initial={{ opacity: 0, }}
+          animate={{ opacity: 1,transition: { duration: 1, delay: 1 }}}
+          exit={{ opacity: 0 ,transition: {duration: 1, delay: 1} }}>
+          <div style={circleStyles}/>
+        </motion.div>
         <div style={ringsContainer}>
           <Heading size="lg"  style={loadingTextStyle}>
             Loading

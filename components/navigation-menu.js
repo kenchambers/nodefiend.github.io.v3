@@ -31,8 +31,8 @@ export default function NavigationMenu({show}){
             <motion.div
               style={{position: 'relative'}}
               initial={{ height: '0%', width: '0%' }}
-              animate={{ height: '100%', width: '100%',transition: {duration: 0.7}  }}
-              exit={{ height: '0%', width: '0%',transition: {delay: 1.5, duration: 0.5} }}
+              animate={{ height: '100%', width: '100%',transition: {duration: 0.5}  }}
+              exit={{ height: '0%', width: '0%',transition: {delay: 0.6, duration: 0.2} }}
             >
             <Box
               bg={accentColor}
@@ -41,8 +41,8 @@ export default function NavigationMenu({show}){
               h={['100%', '100%', '100%','100%']}>
                 <motion.div
                   initial={{ height: '0%', opacity: 1 }}
-                  animate={{ height: '100%', opacity: 1, transition: {delay: 1.5} }}
-                  exit={{ height: '0%', opacity: 1, transition: { delay: 1.5, duration: 1 } }}
+                  animate={{ height: '100%', opacity: 1, transition: {delay: 0.5} }}
+                  exit={{ height: '0%', opacity: 1, transition: { delay: 0.5, duration: 0.2 } }}
                 >
                   <Box h={["100%", null, '40%', '100vh', '100vh']} w="100%">
                     <Links/>
@@ -57,8 +57,8 @@ export default function NavigationMenu({show}){
                 h={['100%', '100%', '100%','100%']}>
                 <motion.div
                   initial={{ x: -500, height: '0%', opacity: 0 }}
-                  animate={{ x: 0, height: '100%', opacity: 1 , transition: {delay:0.5, duration: 1}}}
-                  exit={{ x: -500, height: '0%', opacity: 0, transition: {delay:0.5, duration: 1}}}
+                  animate={{ x: 0, height: '100%', opacity: 1 , transition: {delay: 1.2, duration: 0.7}}}
+                  exit={{ x: -500, height: '0%', opacity: 0, transition: {delay:0.1, duration: 0.6}}}
                 >
                   <Center w={["100vw",null,null,"50vw"]} h="100%" bg={boxBgColor2} >
 

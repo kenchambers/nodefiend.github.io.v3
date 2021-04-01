@@ -70,8 +70,8 @@ export default function Links () {
       variants={list}>
       <motion.div
         initial={{ opacity: 0, height: '0%'}}
-        animate={{ opacity: 1, height: '100%', transition: { duration: 1, delay: 0.4 }}}
-        exit={{ opacity: 0, height: '0%', transition: { delay: 2 }}}>
+        animate={{ opacity: 1, height: '100%', transition: { duration: 0.6, delay: 0.4 }}}
+        exit={{ opacity: 0, height: '0%', transition: { delay: 1 }}}>
         <Grid
           h={['50vh', '50vh', '50vh', 'calc(100vh - 72px)']}
           templateRows="repeat(2, 1fr)"
@@ -84,15 +84,22 @@ export default function Links () {
               style={{ backgroundColor: boxBgColor}}
               variants={item}
               initial={{ opacity: 0, y: 0, height: '0%' }}
-              animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 1, delay: 0.8 }}}
-              exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.8, delay: 0.8} }}>
+              animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 0.5, delay: 0.2 }}}
+              exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.2, delay: 0.8} }}>
                 <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/about')}>
-                  <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
-                    About
-                  </Heading>
-                  <Text fontSize={subHeadingFontSize}>
-                    who i think i am
-                  </Text>
+                  <motion.div
+                    initial={{ opacity: 0, y: -500 }}
+                    animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.0 }}}
+                    exit={{ opacity: 0 ,y: -500 , transition: {duration: 0.5, delay: 0.3} }}>
+                    <>
+                      <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
+                        About
+                      </Heading>
+                      <Text fontSize={subHeadingFontSize}>
+                        who i think i am
+                      </Text>
+                    </>
+                  </motion.div>
                 </Box>
             </motion.div>
           </GridItem>
@@ -101,15 +108,22 @@ export default function Links () {
               style={{backgroundColor: boxBgColor2}}
               variants={item}
               initial={{ opacity: 0, y: 0, height: '0%' }}
-              animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 1, delay: 1.2 }}}
-              exit={{ opacity: 0 , x: 0 , height: '0%', transition: {duration: 0.8,  delay: 0.6 }}}>
+              animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 0.5, delay: 0.4 }}}
+              exit={{ opacity: 0 , x: 0 , height: '0%', transition: {duration: 0.2,  delay: 0.6 }}}>
               <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/work')}>
-                <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
-                  Work
-                </Heading>
-                <Text fontSize={subHeadingFontSize}>
-                  code I've committed
-                </Text>
+                <motion.div
+                  initial={{ opacity: 0, y: -500 }}
+                  animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.1 }}}
+                  exit={{ opacity: 0 ,y: -500 , transition: {duration: 0.5, delay: 0.2} }}>
+                  <>
+                  <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
+                    Work
+                  </Heading>
+                  <Text fontSize={subHeadingFontSize}>
+                    code I've committed
+                  </Text>
+                  </>
+                </motion.div>
               </Box>
             </motion.div>
           </GridItem>
@@ -118,15 +132,22 @@ export default function Links () {
               style={{backgroundColor: boxBgColor2}}
               variants={item}
               initial={{ opacity: 0, y: 0, height: '0%' }}
-              animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 1, delay: 1.6}}}
-              exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.8, delay: 0.4}  }}>
+              animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 0.5, delay: 0.6}}}
+              exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.2, delay: 0.4}  }}>
               <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/posts')}>
-                <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
-                  Posts
-                </Heading>
-                <Text fontSize={subHeadingFontSize}>
-                  Trying to help the Community
-                </Text>
+                <motion.div
+                  initial={{ opacity: 0, y: -500 }}
+                  animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.2 }}}
+                  exit={{ opacity: 0 ,y: -500 , transition: {duration: 0.5, delay: 0.1} }}>
+                  <>
+                    <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
+                      Posts
+                    </Heading>
+                    <Text fontSize={subHeadingFontSize}>
+                      Trying to help the Community
+                    </Text>
+                  </>
+                </motion.div>
               </Box>
             </motion.div>
           </GridItem>
@@ -135,15 +156,22 @@ export default function Links () {
               style={{backgroundColor: boxBgColor}}
               variants={item}
               initial={{ opacity: 0, y: 0, height: '0%' }}
-              animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 1, delay: 1.2} }}
-              exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.8, delay: 0.2}  }}>
+              animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 0.5, delay: 0.8} }}
+              exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.2, delay: 0.2}  }}>
               <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/tools')}>
-                <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
-                  Tools
-                </Heading>
-                <Text fontSize={subHeadingFontSize}>
-                  A little about what I use
-                </Text>
+                <motion.div
+                  initial={{ opacity: 0, y: -500 }}
+                  animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.3 }}}
+                  exit={{ opacity: 0 ,y: -500 , transition: {duration: 0.5, delay: 0.0} }}>
+                  <>
+                  <Heading size="lg" fontSize={headingFontSize} color={navHeadingColor} style={{fontFamily: 'Montserrat-Black'}}>
+                    Tools
+                  </Heading>
+                  <Text fontSize={subHeadingFontSize}>
+                    A little about what I use
+                  </Text>
+                  </>
+                </motion.div>
               </Box>
             </motion.div>
           </GridItem>

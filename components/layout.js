@@ -33,7 +33,7 @@ export default function Layout({ children, home }) {
         }else{
           displayMainCanvas()
         }
-      }, 1500)
+      }, 500)
     }
     if (!navMenuOpen) {
       open()
