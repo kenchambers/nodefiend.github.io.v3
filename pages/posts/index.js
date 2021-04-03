@@ -8,9 +8,9 @@ import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { Context } from '../../contexts'
 import { SimpleGrid, Tag, Heading, Icon, Container, useColorMode, Box, Wrap, WrapItem, Center, Text } from "@chakra-ui/react"
-import { motion, AnimatePresence } from "framer-motion"
 import Image from 'next/image';
 import { FaHeart, FaComment } from 'react-icons/fa'
+import ComponentContainer from '../../components/component-container'
 
 
 async function fetchDevArticles (dispatch) {
@@ -64,48 +64,49 @@ function PostComponent({post}) {
   const heartsCount = post.positive_reactions_count + post.public_reactions_count
   const commentsCount = post.comments_count
   return (
-    <Center m="10px" w={["100%","250px"]} mt="2vw">
-      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" style={{ border: `5px solid ${accentColor}`}}>
-        <PostLink href={postURL} id={post.id}>
-          <Box>
-            <Image width="300px" height="100%" src={post.cover_image} alt={post.cover_image} />
 
-            <Heading p={'0.6em'} size="lg" fontSize={blogTitleFontSize} color={blogTitleColor} style={{fontFamily: 'Montserrat-Black'}}>
-              {post.title}
-            </Heading>
+      <Center m="10px" w={["100%","250px"]} mt="2vw">
+        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" style={{ border: `5px solid ${accentColor}`}}>
+          <PostLink href={postURL} id={post.id}>
+            <Box>
+              <Image width="300px" height="100%" src={post.cover_image} alt={post.cover_image} />
 
-            <Text p={'0.6em'} color={blogTitleColor}>
-              { humanReadableCreatedAt }
-            </Text>
+              <Heading p={'0.6em'} size="lg" fontSize={blogTitleFontSize} color={blogTitleColor} style={{fontFamily: 'Montserrat-Black'}}>
+                {post.title}
+              </Heading>
 
-            <Box style={{width: 150}}>
-              <SimpleGrid columns={2} >
-                <Box id="cheeb">
-                  <Text p={'0.6em'}>
-                    {heartsCount.toString()} <Icon as={FaHeart} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color="red"/>
-                  </Text>
-                </Box>
-                <Box>
-                  <Text p={'0.6em'}>
-                    {commentsCount.toString()} <Icon as={FaComment} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color={blogTitleColor}/>
-                  </Text>
-                </Box>
-              </SimpleGrid>
+              <Text p={'0.6em'} color={blogTitleColor}>
+                { humanReadableCreatedAt }
+              </Text>
+
+              <Box style={{width: 150}}>
+                <SimpleGrid columns={2} >
+                  <Box id="cheeb">
+                    <Text p={'0.6em'}>
+                      {heartsCount.toString()} <Icon as={FaHeart} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color="red"/>
+                    </Text>
+                  </Box>
+                  <Box>
+                    <Text p={'0.6em'}>
+                      {commentsCount.toString()} <Icon as={FaComment} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color={blogTitleColor}/>
+                    </Text>
+                  </Box>
+                </SimpleGrid>
+              </Box>
+
+
+
+              <Box p={'0.6em'}>
+                {
+                  post.tag_list.length > 0 && (
+                    <TagGenerator tags={post.tag_list}/>
+                  )
+                }
+              </Box>
             </Box>
-
-
-
-            <Box p={'0.6em'}>
-              {
-                post.tag_list.length > 0 && (
-                  <TagGenerator tags={post.tag_list}/>
-                )
-              }
-            </Box>
-          </Box>
-        </PostLink>
-      </Box>
-    </Center>
+          </PostLink>
+        </Box>
+      </Center>
   )
 }
 
@@ -147,16 +148,18 @@ export default function Blog() {
   }, [dispatch])
 
   return (
-    <>
-      <Head>
-        <title>Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-        <PostsList articles={articles}/>
-      <Link href="/">
-          <a>Back to home</a>
-      </Link>
-    </>
+    <ComponentContainer>
+      <>
+        <Head>
+          <title>Blog</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+          <PostsList articles={articles}/>
+        <Link href="/">
+            <a>Back to home</a>
+        </Link>
+      </>
+    </ComponentContainer>
   )
 
 }

@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import styles from './layout.module.scss'
-import Link from 'next/link'
-import { Icon, useColorMode, Button, IconButton,Square, Flex, Box, Spacer, Heading } from "@chakra-ui/react"
+import { Icon, useColorMode,  Flex, Box, Spacer } from "@chakra-ui/react"
 import { useState, useContext } from 'react'
-import { motion, useAnimation , useMotionValue} from 'framer-motion'
 import Logo from './logo'
 import HamburgerButton from './hamburger-button'
 import ToggleDarkModeButton from './dark-mode-button'

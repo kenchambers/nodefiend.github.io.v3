@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import ComponentContainer from '../../components/component-container'
+
 import {  Box,
           Container,
           Center,
@@ -15,7 +17,7 @@ const workArray = [
   {
     heading: 'Platejoy',
     timeframe: '2019 - Present',
-    title: 'React / Ruby On Rails Engineer',
+    title: 'React / Rails Engineer',
     items: [
       'Lorem ipsum dolor sit amet',
       'Lorem ipsum dolor sit amet',
@@ -26,7 +28,7 @@ const workArray = [
   {
     heading: 'Plannerly',
     timeframe: '2017 - 2019',
-    title: 'React / Ruby On Rails Engineer',
+    title: 'React / Rails Engineer',
     items: [
       'Lorem ipsum dolor sit amet',
       'Lorem ipsum dolor sit amet',
@@ -37,7 +39,7 @@ const workArray = [
   {
     heading: 'Hire Iris',
     timeframe: '2015 - 2017',
-    title: 'React / Ruby On Rails Engineer',
+    title: 'React / Rails Engineer',
     items: [
       'Lorem ipsum dolor sit amet',
       'Lorem ipsum dolor sit amet',
@@ -48,7 +50,7 @@ const workArray = [
   {
     heading: 'Critique ^ It',
     timeframe: '2014 - 2015',
-    title: 'React / Ruby On Rails Engineer',
+    title: 'React/Rails Engineer (PM)',
     items: [
       'Lorem ipsum dolor sit amet',
       'Lorem ipsum dolor sit amet',
@@ -65,7 +67,7 @@ const WorkSection = ({ work: { heading, timeframe, title, items }}) => {
     <>
       <Divider style={{height: 10, backgroundColor: accentColor}} orientation="horizontal" />
         <Stack direction="row">
-          <Heading fontSize={['14px', '40px', '60px', '80px']} style={{color: accentColor}}>
+          <Heading size={['4xl']} color={accentColor}>
             {heading}
           </Heading>
         </Stack>
@@ -76,7 +78,7 @@ const WorkSection = ({ work: { heading, timeframe, title, items }}) => {
           </Heading>
           <Divider orientation="vertical" />
           <Stack h="200px">
-            <Text style={{fontSize: '18px', color: accentColor}}>
+            <Text fontSize={['1.1rem', '1.5rem', '1.8rem']} color={accentColor} style={{fontFamily: 'Montserrat-Black'}}>
               {title}
             </Text>
             <UnorderedList pl="20px" fontSize={["16px"]}>
@@ -99,24 +101,26 @@ export default function Work() {
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
 
   return (
-    <>
-      <Head>
-        <title>Work</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Center>
+    <ComponentContainer>
+      <>
+        <Head>
+          <title>Work</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Center>
 
-        <Container >
-          {
-            workArray.map((work, i) => {
+          <Container >
+            {
+              workArray.map((work, i) => {
 
-              return (
-                <WorkSection key={i} work={work}/>
-              )
-            })
-          }
-        </Container>
-      </Center>
-    </>
+                return (
+                  <WorkSection key={i} work={work}/>
+                )
+              })
+            }
+          </Container>
+        </Center>
+      </>
+    </ComponentContainer>
   )
 }

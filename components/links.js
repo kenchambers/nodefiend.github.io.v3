@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import Link from 'next/link'
-import {Context} from '../contexts'
+import { Context } from '../contexts'
 import { useState, useContext } from 'react'
 import { Box, Grid, GridItem, useColorMode, Heading, Text } from "@chakra-ui/react"
 import { useRouter } from 'next/router'
@@ -62,7 +62,7 @@ export default function Links () {
   }
 
   const headingFontSize = ['2em', null, '30px', '50px']
-  const subHeadingFontSize = ["1.5em",null, '2em', null, '2.3em']
+  const subHeadingFontSize = ['1.1rem',null, '1.4rem', null, '1.6rem']
   return (
     <motion.div
       initial="hidden"

@@ -4,6 +4,7 @@ import { Icon } from "@chakra-ui/react"
 import { SiFirebase, SiHeroku, SiNextDotJs, SiRails, SiRedux , SiReact, SiAmazonaws } from 'react-icons/si'
 import { FaStripe } from 'react-icons/fa'
 import { DiRuby } from 'react-icons/di'
+import ComponentContainer from '../../components/component-container'
 
 const railsIcon = <Icon as={SiRails} w={12} h={12} color="grey.500"/>
 const reactIcon = <Icon as={SiReact} w={12} h={12} color="grey.500"/>
@@ -94,22 +95,24 @@ const Tool = ({ tool: { icon, title, text }}) => {
 
 export default function Tools() {
   return (
-    <>
-      <Head>
-        <title>Tools</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-        <Center>
-          <Container >
-            <Accordion allowMultiple>
-              { toolArray.map((tool,i)=>{
-                return (
-                    <Tool key={i} tool={tool}/>
-                )
-              })}
-            </Accordion>
-          </Container>
-        </Center>
-    </>
+    <ComponentContainer>
+      <>
+        <Head>
+          <title>Tools</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+          <Center>
+            <Container >
+              <Accordion allowMultiple>
+                { toolArray.map((tool,i)=>{
+                  return (
+                      <Tool key={i} tool={tool}/>
+                  )
+                })}
+              </Accordion>
+            </Container>
+          </Center>
+      </>
+    </ComponentContainer>
   )
 }

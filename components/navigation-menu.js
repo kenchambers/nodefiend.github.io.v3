@@ -1,5 +1,5 @@
 import { Icon, useColorMode, Center, Button, IconButton,Square, Flex, Box, Spacer, Heading } from "@chakra-ui/react"
-import { motion, AnimatePresence, useAnimation , useMotionValue} from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Links from './links'
 import ContactComponent from './contact-component'
 import {FaHome} from 'react-icons/fa'

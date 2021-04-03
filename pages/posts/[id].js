@@ -5,7 +5,6 @@ import { Context } from '../../contexts'
 import axios from 'axios'
 import Image from 'next/image';
 import Head from 'next/head'
-import { motion, AnimatePresence } from "framer-motion"
 import Link from 'next/link'
 import {PostsList} from './index'
 
