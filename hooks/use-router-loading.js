@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router';
-import {useEffect, useState, createContext} from 'react';
+import {useEffect, useState, useContext} from 'react';
+import { Context } from '../contexts'
 
 const useRouterLoading = () => {
   const Router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const [ loading, setLoading ] = useState(false)
   useEffect(() => {
     const start = () => {
       setLoading(true)
+
     }
     const end = () => {
       setLoading(false)

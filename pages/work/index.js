@@ -15,7 +15,7 @@ import {  Box,
 
 const workArray = [
   {
-    heading: 'Platejoy',
+    heading: 'PlateJoy',
     timeframe: '2019 - Present',
     title: 'React / Rails Engineer',
     items: [
@@ -63,21 +63,22 @@ const workArray = [
 const WorkSection = ({ work: { heading, timeframe, title, items }}) => {
   const { colorMode } = useColorMode()
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
+  const dividerColor = colorMode == "light" ?  '#C9C6B1' : '#2B2B57'
   return (
     <>
-      <Divider style={{height: 10, backgroundColor: accentColor}} orientation="horizontal" />
-        <Stack direction="row">
+      <Divider style={{height: 10, backgroundColor: dividerColor}} orientation="horizontal" />
+        <Stack direction="row" style={{paddingTop: 10}}>
           <Heading size={['4xl']} color={accentColor}>
             {heading}
           </Heading>
         </Stack>
-        <Stack direction="row" h="300px" p={4}>
-          <Divider orientation="vertical" />
-          <Heading size="md" fontSize="20" >
+        <Stack direction="row" h="300px" p={4} style={{paddingLeft: 0}}>
+
+          <Heading style={{paddingTop: 7}} size="md" fontSize="20" >
             {timeframe}
           </Heading>
-          <Divider orientation="vertical" />
-          <Stack h="200px">
+
+          <Stack h="200px" style={{paddingLeft: 20}}>
             <Text fontSize={['1.1rem', '1.5rem', '1.8rem']} color={accentColor} style={{fontFamily: 'Montserrat-Black'}}>
               {title}
             </Text>

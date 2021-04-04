@@ -1,4 +1,3 @@
-
 import Head from 'next/head'
 import {
           Box,
@@ -12,6 +11,8 @@ import {
         } from "@chakra-ui/react"
 import ContactComponent from '../../components/contact-component'
 import ComponentContainer from '../../components/component-container'
+import Particles from 'react-particles-js'
+import {particlesConfigDark, particlesConfigLight} from './particles-config'
 
 const list = { hidden: { opacity: 1 } }
 const item = { hidden: { x: -10, opacity: 1 } }
@@ -35,9 +36,14 @@ export default function About() {
               <Box>
                 <Center w={["100vw",null,null,"50vw"]} h="calc(100vh - 72px)" bg={boxBgColor2}>
                   <VStack>
-                    <Heading size="lg" fontSize={["2rem", '4rem', null, "6rem"]} style={{fontFamily: 'PoiretOne-Regular'}}>
+                    <Heading size="lg" fontSize={["2rem", '4rem', null, "5rem"]} style={{fontFamily: 'PoiretOne-Regular', position: 'absolute', top: '50%'}}>
                       Ken Chambers
                     </Heading>
+                    <Particles
+                      width="100%"
+                      height="100vh"
+                      style={{postion: 'absolute'}}
+                      params={colorMode == "light" ? particlesConfigLight : particlesConfigDark} />
                     <ContactComponent/>
                   </VStack>
                 </Center>
@@ -59,3 +65,5 @@ export default function About() {
     </ComponentContainer>
   )
 }
+
+

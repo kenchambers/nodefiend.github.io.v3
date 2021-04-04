@@ -1,27 +1,44 @@
-import { Icon, useColorMode, Center, Button, IconButton,Square, Flex, Box, Spacer, Heading } from "@chakra-ui/react"
-import { motion, AnimatePresence } from 'framer-motion'
-import Links from './links'
+import {useContext} from 'react'
+import { useColorMode, Box, Center, Heading, Icon } from "@chakra-ui/react"
 import ContactComponent from './contact-component'
+import { useRouter } from 'next/router'
+import Links from './links'
 import {FaHome} from 'react-icons/fa'
-import HeroGraphic from './hero-graphic'
 import { useHasMounted } from '../hooks/use-has-mounted'
 import useDeviceDetect from '../hooks/use-device-detect'
+import {Context} from '../contexts'
+import {AnimatePresence, motion} from 'framer-motion'
+import HeroGraphic from './hero-graphic'
+
 
 const r = Math.random()
 
 const mobileScale = [20 + r * 14, 50 + r * 20, 1]
 
 export default function NavigationMenu({show}){
+  const {  dispatch } = useContext(Context);
 
-  const hasMounted = useHasMounted();
+  const hasMounted = useHasMounted()
+  const isMobile = useDeviceDetect()
+  const { colorMode } = useColorMode()
+  const router = useRouter()
+  const close = () => dispatch({type: "TOGGLE_NAV", payload: false})
+  const showMainCanvas = () => dispatch({ type: "SHOW_MAIN_CANVAS"})
 
-  const {colorMode} = useColorMode()
+  const onLinkClick = (e, href, timeout = 0) => {
+    e.preventDefault()
+
+    showMainCanvas()
+    close()
+
+    setTimeout(()=>{
+      router.push(href)
+    }, timeout)
+  }
 
   const boxBgColor = colorMode == "light" ? '#e3dfc8' : '#543864'
   const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
-
-  const isMobile = useDeviceDetect()
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -60,7 +77,10 @@ export default function NavigationMenu({show}){
                   animate={{ x: 0, height: '100%', opacity: 1 , transition: {delay: 1.2, duration: 0.7}}}
                   exit={{ x: -500, height: '0%', opacity: 0, transition: {delay:0.1, duration: 0.6}}}
                 >
-                  <Center w={["100vw",null,null,"50vw"]} h="100%" bg={boxBgColor2} >
+                  <Center
+                    onClick={(e)=> onLinkClick(e,'/', 300)}
+                    w={["100vw",null,null,"50vw"]}
+                    h="100%" bg={boxBgColor2} >
 
                     <Box  style={{position: 'relative'}} bg={boxBgColor} h={["42vh", "42vh", "42vh", '100vh', '100vh']} w="100%" >
                         <HeroGraphic scale={isMobile ? mobileScale : null}/>

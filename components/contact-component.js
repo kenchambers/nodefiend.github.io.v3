@@ -39,7 +39,7 @@ function SocialMediaIconLink ({as, href}) {
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
   const responsiveIconSize = ['2rem', '4rem', '5em']
   return (
-    <a href={href}>
+    <a href={href} target="_blank">
       <Icon as={as} viewBox='0 0 48 48' boxSize={responsiveIconSize}  color={accentColor}/>
     </a>
   )

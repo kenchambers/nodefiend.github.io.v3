@@ -1,5 +1,4 @@
 import { motion } from "framer-motion"
-import Link from 'next/link'
 import { Context } from '../contexts'
 import { useState, useContext } from 'react'
 import { Box, Grid, GridItem, useColorMode, Heading, Text } from "@chakra-ui/react"
@@ -10,21 +9,20 @@ export default function Links () {
   const { state, dispatch } = useContext(Context);
   const router = useRouter()
   const close = () => dispatch({type: "TOGGLE_NAV", payload: false})
-
   const { colorMode } = useColorMode()
   const boxBgColor = colorMode == "light" ? '#e3dfc8' : '#543864'
   const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
   const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
   const navHeadingColor = colorMode == "light" ? '#eebb4d' : '#ff6363'
 
-  const onLinkClick = (e, href) => {
+  const onLinkClick = (e, href, timeout = 0) => {
     e.preventDefault()
 
     close()
 
     setTimeout(()=>{
       router.push(href)
-    }, 2000)
+    }, timeout)
   }
 
   const { navMenuOpen } = state;
@@ -86,7 +84,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 0.5, delay: 0.2 }}}
               exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.2, delay: 0.8} }}>
-                <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/about')}>
+                <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/about', 300)}>
                   <motion.div
                     initial={{ opacity: 0, y: -500 }}
                     animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.0 }}}
@@ -110,7 +108,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: { duration: 0.5, delay: 0.4 }}}
               exit={{ opacity: 0 , x: 0 , height: '0%', transition: {duration: 0.2,  delay: 0.6 }}}>
-              <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/work')}>
+              <Box h={["30vw", "30vw", "20vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/work', 300)}>
                 <motion.div
                   initial={{ opacity: 0, y: -500 }}
                   animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.1 }}}
@@ -134,7 +132,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 0.5, delay: 0.6}}}
               exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.2, delay: 0.4}  }}>
-              <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/posts')}>
+              <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/posts', 300)}>
                 <motion.div
                   initial={{ opacity: 0, y: -500 }}
                   animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.2 }}}
@@ -158,7 +156,7 @@ export default function Links () {
               initial={{ opacity: 0, y: 0, height: '0%' }}
               animate={{ opacity: 1, y: 0, height: '100%', transition: {duration: 0.5, delay: 0.8} }}
               exit={{ opacity: 0 , x: 0, height: '0%', transition: {duration: 0.2, delay: 0.2}  }}>
-              <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/tools')}>
+              <Box h={["30vw", "30vw", "30vw","42vh"]} w="100%" p="20px" onClick={(e)=> onLinkClick(e,'/tools', 300)}>
                 <motion.div
                   initial={{ opacity: 0, y: -500 }}
                   animate={{ opacity: 1,y: 0, transition: { duration: 0.8, delay: 0.3 }}}
