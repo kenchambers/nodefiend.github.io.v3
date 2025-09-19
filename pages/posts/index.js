@@ -1,151 +1,202 @@
 // https://codesandbox.io/s/app-store-ui-using-react-and-framer-motion-ecgc2?file=/src/CardList.tsx:432-440
 // https://chakra-ui.com/docs/layout/box
 
-import Link from 'next/link'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useEffect, useState, useContext } from 'react'
-import axios from 'axios'
-import { Context } from '../../contexts'
-import { SimpleGrid, Tag, Heading, Icon, Container, useColorMode, Box, Wrap, WrapItem, Center, Text } from "@chakra-ui/react"
-import Image from 'next/image';
-import { FaHeart, FaComment } from 'react-icons/fa'
-import ComponentContainer from '../../components/component-container'
+import Link from "next/link";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import { Context } from "../../contexts";
+import {
+  SimpleGrid,
+  Tag,
+  Heading,
+  Icon,
+  Container,
+  useColorMode,
+  Box,
+  Wrap,
+  WrapItem,
+  Center,
+  Text,
+} from "@chakra-ui/react";
+import Image from "next/image";
+import { FaHeart, FaComment } from "react-icons/fa";
+import ComponentContainer from "../../components/component-container";
 
-
-async function fetchDevArticles (dispatch) {
-  const response = await axios.get('https://dev.to/api/articles?username=nodefiend')
-  dispatch({type: "GET_ARTICLES", payload: response.data})
+async function fetchDevArticles(dispatch) {
+  const response = await axios.get(
+    "https://dev.to/api/articles?username=nodefiend"
+  );
+  dispatch({ type: "GET_ARTICLES", payload: response.data });
 }
 
 function PostLink({ children, href, id }) {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleClick = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    router.push('/posts/[id]', `/posts/${id}`)
-  }
+    router.push("/posts/[id]", `/posts/${id}`);
+  };
 
-  return (
-    <a href={href}>
-      {children}
-    </a>
-  )
+  return <a href={href}>{children}</a>;
 }
 
-function TagGenerator({tags}) {
+function TagGenerator({ tags }) {
   if (tags.length > 0) {
-    return(
+    return (
       <>
-        {
-          tags.map((tag,i)=> {
-            return (
-              <Tag key={i} m="1" colorScheme="teal" size="md">
-                #{tag}
-              </Tag>
-            )
-          })
-        }
+        {tags.map((tag, i) => {
+          return (
+            <Tag key={i} m="1" colorScheme="teal" size="md">
+              #{tag}
+            </Tag>
+          );
+        })}
       </>
-    )
+    );
   }
 }
 
-function PostComponent({post}) {
-  const { colorMode } = useColorMode()
-  const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
-  const blogTitleFontSize = ['1.2em']
-  const blogTitleColor = colorMode == "light" ? '#505050' : '#ff6363'
+function PostComponent({ post }) {
+  const { colorMode } = useColorMode();
+  const accentColor = colorMode == "light" ? "#96bb7c" : "#ff6363";
+  const blogTitleFontSize = ["1.2em"];
+  const blogTitleColor = colorMode == "light" ? "#505050" : "#ff6363";
 
-  const postURL = post.canonical_url
-  const humanReadableCreatedAt = new Date(post.created_at).toDateString()
+  const postURL = post.canonical_url;
+  const humanReadableCreatedAt = new Date(post.created_at).toDateString();
 
-  const heartsCount = post.positive_reactions_count + post.public_reactions_count
-  const commentsCount = post.comments_count
+  const heartsCount =
+    post.positive_reactions_count + post.public_reactions_count;
+  const commentsCount = post.comments_count;
   return (
-
-      <Center m="10px" w={["100%","250px"]} mt="2vw">
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" style={{ border: `5px solid ${accentColor}`}}>
-          <PostLink href={postURL} id={post.id}>
-            <Box>
-              <Image width="300px" height="100%" src={post.cover_image} alt={post.cover_image} />
-
-              <Heading p={'0.6em'} size="lg" fontSize={blogTitleFontSize} color={blogTitleColor} style={{fontFamily: 'Montserrat-Black'}}>
-                {post.title}
-              </Heading>
-
-              <Text p={'0.6em'} color={blogTitleColor}>
-                { humanReadableCreatedAt }
-              </Text>
-
-              <Box style={{width: 150}}>
-                <SimpleGrid columns={2} >
-                  <Box id="cheeb">
-                    <Text p={'0.6em'}>
-                      {heartsCount.toString()} <Icon as={FaHeart} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color="red"/>
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text p={'0.6em'}>
-                      {commentsCount.toString()} <Icon as={FaComment} style={{marginLeft: 2, marginBottom: 2}} viewBox='0 0 24 24' boxSize='1em' w={8} h={8} color={blogTitleColor}/>
-                    </Text>
-                  </Box>
-                </SimpleGrid>
+    <Center m="10px" w={["100%", "250px"]} mt="2vw">
+      <Box
+        maxW="sm"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        style={{ border: `5px solid ${accentColor}` }}
+      >
+        <PostLink href={postURL} id={post.id}>
+          <Box>
+            {post.cover_image ? (
+              <Image
+                width={300}
+                height={200}
+                src={post.cover_image}
+                alt={post.title}
+                style={{ objectFit: "cover" }}
+              />
+            ) : (
+              <Box
+                width="300px"
+                height="200px"
+                bg="gray.200"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Text color="gray.500">No image</Text>
               </Box>
+            )}
 
+            <Heading
+              p={"0.6em"}
+              size="lg"
+              fontSize={blogTitleFontSize}
+              color={blogTitleColor}
+              style={{ fontFamily: "Montserrat-Black" }}
+            >
+              {post.title}
+            </Heading>
 
+            <Text p={"0.6em"} color={blogTitleColor}>
+              {humanReadableCreatedAt}
+            </Text>
 
-              <Box p={'0.6em'}>
-                {
-                  post.tag_list.length > 0 && (
-                    <TagGenerator tags={post.tag_list}/>
-                  )
-                }
-              </Box>
+            <Box style={{ width: 150 }}>
+              <SimpleGrid columns={2}>
+                <Box id="cheeb">
+                  <Text p={"0.6em"}>
+                    {heartsCount.toString()}{" "}
+                    <Icon
+                      as={FaHeart}
+                      style={{ marginLeft: 2, marginBottom: 2 }}
+                      viewBox="0 0 24 24"
+                      boxSize="1em"
+                      w={8}
+                      h={8}
+                      color="red"
+                    />
+                  </Text>
+                </Box>
+                <Box>
+                  <Text p={"0.6em"}>
+                    {commentsCount.toString()}{" "}
+                    <Icon
+                      as={FaComment}
+                      style={{ marginLeft: 2, marginBottom: 2 }}
+                      viewBox="0 0 24 24"
+                      boxSize="1em"
+                      w={8}
+                      h={8}
+                      color={blogTitleColor}
+                    />
+                  </Text>
+                </Box>
+              </SimpleGrid>
             </Box>
-          </PostLink>
-        </Box>
-      </Center>
-  )
+
+            <Box p={"0.6em"}>
+              {post.tag_list.length > 0 && (
+                <TagGenerator tags={post.tag_list} />
+              )}
+            </Box>
+          </Box>
+        </PostLink>
+      </Box>
+    </Center>
+  );
 }
 
-function PostsList({articles}){
-  const { colorMode } = useColorMode()
-  const accentColor = colorMode == "light" ? '#96bb7c' : '#ff6363'
+function PostsList({ articles }) {
+  const { colorMode } = useColorMode();
+  const accentColor = colorMode == "light" ? "#96bb7c" : "#ff6363";
   return (
     <Container centerContent>
-      <Center id="blal" w={["100%","612px",'890px']}>
+      <Center id="blal" w={["100%", "612px", "890px"]}>
         <Container maxW="900px" centerContent>
           <Box>
             <Container maxW="900px" centerContent>
               <Wrap>
-                  {
-                    articles.map((post, i)=>{
-                      return(
-                        <WrapItem key={i}>
-                          <PostComponent post={post}/>
-                        </WrapItem>
-                      )})
-                  }
+                {articles.map((post, i) => {
+                  return (
+                    <WrapItem key={i}>
+                      <PostComponent post={post} />
+                    </WrapItem>
+                  );
+                })}
               </Wrap>
             </Container>
           </Box>
         </Container>
       </Center>
     </Container>
-  )
+  );
 }
 
 export default function Blog() {
   const { state, dispatch } = useContext(Context);
-  const router = useRouter()
-  const { articles }  = state;
+  const router = useRouter();
+  const { articles } = state;
   const loaded = !!articles.length;
 
-  useEffect(()=>{
-    fetchDevArticles(dispatch)
-  }, [dispatch])
+  useEffect(() => {
+    fetchDevArticles(dispatch);
+  }, [dispatch]);
 
   return (
     <ComponentContainer>
@@ -154,12 +205,9 @@ export default function Blog() {
           <title>Blog</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-          <PostsList articles={articles}/>
-        <Link href="/">
-            <a>Back to home</a>
-        </Link>
+        <PostsList articles={articles} />
+        <Link href="/">Back to home</Link>
       </>
     </ComponentContainer>
-  )
-
+  );
 }

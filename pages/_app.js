@@ -1,81 +1,61 @@
-import '../styles/globals.scss'
-import {  extendTheme,
-          ChakraProvider,
-          useColorMode } from "@chakra-ui/react"
-import { mode } from '@chakra-ui/theme-tools';
-import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
-import { Provider } from '../contexts'
-import Loading from '../components/loading'
-import { chakraConfig, colors, font } from '../constants'
-import useRouterLoading from '../hooks/use-router-loading'
-import Layout from '../components/layout'
+import "../styles/globals.scss";
+import { extendTheme, ChakraProvider } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
+import { AnimatePresence, motion } from "framer-motion";
+import { Provider } from "../contexts";
+import { chakraConfig, font } from "../constants";
+import Layout from "../components/layout";
 
-
-// darkmode:
-// #202040
-// #543864
-// #ff6363
-// #ffbd69
-//
-// lightmode:
-// #e3dfc8
-// #f5f1da
-// #96bb7c
-// #eebb4d
-
+// Theme configuration
 const styles = {
-  global: props => ({
+  global: (props) => ({
     body: {
-      color: mode('#505050', '#ffbd69')(props),
-      bg: mode('#96bb7c', '#ff6363')(props),
-      fontFamily: 'Montserrat-Light',
-      fontSize: '1em',
+      color: mode("#505050", "#E2E8F0")(props),
+      bg: mode("#F5F1E6", "#0C161D")(props),
+      fontFamily: "Montserrat-Light",
+      fontSize: "1em",
       fontWeight: 300,
     },
   }),
 };
 
-// Controls main animation for transitions between pages
+export const theme = extendTheme({ font, chakraConfig, styles });
 
-export const theme = extendTheme({ font, chakraConfig, styles})
+// Simple page transition variants
+const pageVariants = {
+  initial: { opacity: 0, y: 10 },
+  in: { opacity: 1, y: 0 },
+  out: { opacity: 0, y: -10 },
+};
 
-
+const pageTransition = {
+  type: "tween",
+  ease: "anticipate",
+  duration: 0.3,
+};
 
 function MyApp({ Component, pageProps, router }) {
-  const routerLoading = useRouterLoading()
-
   return (
     <Provider>
       <ChakraProvider theme={theme}>
-          <Layout>
-            <AnimatePresence exitBeforeEnter>
-              <Component key={router.route} {...allProps}/>
-            </AnimatePresence>
-          </Layout>
+        <Layout>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={router.route}
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+              style={{ width: "100%" }}
+            >
+              <Component {...pageProps} />
+            </motion.div>
+          </AnimatePresence>
+        </Layout>
       </ChakraProvider>
     </Provider>
-  )
-
-  let allProps = { ...Component, ...pageProps, router}
-
-  return (
-    <Provider>
-      <ChakraProvider theme={theme}>
-          <Layout>
-            <AnimatePresence>
-              { routerLoading
-                  ? (
-                      <Loading {...allProps}/>
-                  )
-                  : (
-                      <Component route={router.route} {...allProps}/>
-                  )
-              }
-            </AnimatePresence>
-          </Layout>
-      </ChakraProvider>
-    </Provider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

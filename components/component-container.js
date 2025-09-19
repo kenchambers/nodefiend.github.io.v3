@@ -1,52 +1,16 @@
-import { useColorMode } from "@chakra-ui/react"
-import { motion } from "framer-motion"
+import { useColorMode } from "@chakra-ui/react";
 
-const ComponentContainer = ({ children, router, pageProps }) => {
-  const { colorMode } = useColorMode()
-  const boxBgColor2 = colorMode == "light" ? '#f5f1da' : '#202040'
+const ComponentContainer = ({ children }) => {
+  const { colorMode } = useColorMode();
+  const boxBgColor = colorMode === "light" ? "#f5f1da" : "#202040";
+
   const containerStyles = {
-    width: '100%',
-    height: 'calc(100vh - 72px)',
-    overflowY: 'scroll',
-    backgroundColor: boxBgColor2
-  }
+    width: "100%",
+    minHeight: "calc(100vh - 72px)",
+    backgroundColor: boxBgColor,
+  };
 
-  const containerVariants = {
-    pageInitial: {
-      opacity: 1,
-      x: '-100vw',
+  return <div style={containerStyles}>{children}</div>;
+};
 
-
-      transition: {
-        delay: 0.5,
-        duration: 0.5
-      },
-    },
-    pageAnimate: {
-      opacity: 1,
-      x: '0vw',
-
-      transition: {
-        delay: 0.1,
-        duration: 0.5
-      },
-    },
-    pageExit: {
-      opacity: 1,
-      x: '100vw',
-      backgroundColor: boxBgColor2,
-      transition: {
-        delay: 0.0,
-        duration: 0.5
-      },
-    }
-  }
-
-  return (
-    <motion.div {...pageProps} style={containerStyles} initial={containerVariants.pageInitial} animate={containerVariants.pageAnimate} exit={containerVariants.pageExit} >
-      {children}
-    </motion.div>
-  )
-}
-
-export default ComponentContainer
+export default ComponentContainer;
