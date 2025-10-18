@@ -12,6 +12,7 @@ import { useHasMounted } from "../hooks/use-has-mounted";
 import { Context } from "../contexts";
 import { useContext } from "react";
 import ComponentContainer from "../components/component-container";
+import CurrentProjectsList from "../components/current-projects-list";
 import { SiRubyonrails, SiReact } from "react-icons/si";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -59,6 +60,7 @@ export default function Index() {
                   >
                     AI Enthusiast, Empathetic Mentor, Innovative Dreamer
                   </Heading>
+                  <CurrentProjectsList />
                 </Box>
               </Heading>
             </MotionCenter>
